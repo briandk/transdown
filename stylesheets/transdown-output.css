@@ -1,0 +1,19 @@
+.time {
+    font-family: monospace;
+    vertical-align: top;
+}
+
+.speaker-name {
+    vertical-align: top;
+}
+
+.speech {
+    vertical-align: top;
+}
+.accompanying-media {
+    width: 95%;
+}
+
+.speech-interruption {
+    opacity: 0.3;
+}
