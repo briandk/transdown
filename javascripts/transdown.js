@@ -1,11 +1,11 @@
 var transdown = {};
 
 transdown.updatePreviewAfterEachKeypress = function() {
-    $('#text-to-transcriptulate').keyup(transdown.renderTranscriptPreview)
+    $('#text-to-transdownify').keyup(transdown.renderTranscriptPreview)
 }
 
 transdown.renderTranscriptPreview = function() {
-    textToTransdownify = document.getElementById('text-to-transcriptulate').value;
+    textToTransdownify = document.getElementById('text-to-transdownify').value;
     outputText = transdown.transdownify(textToTransdownify);
     document.getElementById('live-preview').innerHTML = outputText;
     console.log("render");
