@@ -5,9 +5,9 @@ transdown.updatePreviewAfterEachKeypress = function () {
 };
 
 transdown.renderTranscriptPreview = function () {
-    var textToTransdownify = document.getElementById('text-to-transdownify').value,
+    var textToTransdownify = $('#text-to-transdownify').val(),
         outputText = transdown.transdownify(textToTransdownify);
-    document.getElementById('live-preview').innerHTML = outputText;
+    $('#live-preview').html(outputText);
     console.log("render");
 };
 
