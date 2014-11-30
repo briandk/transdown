@@ -1,19 +1,20 @@
-var transdown = {};
+var transdownNamespace = {
+    updatePreviewAfterEachKeypress : function () {
+        $('#text-to-transdownify').keyup(this.renderTranscriptPreview);
+    },
 
-transdown.updatePreviewAfterEachKeypress = function () {
-    $('#text-to-transdownify').keyup(transdown.renderTranscriptPreview);
+    transdownify : function (text) {
+        return (text);
+    },
+
+    renderTranscriptPreview : function () {
+        var textToTransdownify = $('#text-to-transdownify').val(),
+            outputText = this.transdownify(textToTransdownify);
+        $('#live-preview').html(outputText);
+        console.log("render");
+    }
 };
 
-transdown.renderTranscriptPreview = function () {
-    var textToTransdownify = $('#text-to-transdownify').val(),
-        outputText = transdown.transdownify(textToTransdownify);
-    $('#live-preview').html(outputText);
-    console.log("render");
-};
-
-transdown.transdownify = function (text) {
-    return (text);
-};
-
+transdown = Object.create(transdownNamespace);
 transdown.updatePreviewAfterEachKeypress();
 transdown.renderTranscriptPreview();
