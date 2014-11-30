@@ -5,8 +5,8 @@ transdown.updatePreviewAfterEachKeypress = function () {
 };
 
 transdown.renderTranscriptPreview = function () {
-    var textToTransdownify = document.getElementById('text-to-transdownify').value;
-    var outputText = transdown.transdownify(textToTransdownify);
+    var textToTransdownify = document.getElementById('text-to-transdownify').value,
+        outputText = transdown.transdownify(textToTransdownify);
     document.getElementById('live-preview').innerHTML = outputText;
     console.log("render");
 };
