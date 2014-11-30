@@ -8,10 +8,11 @@ var transdownNamespace = {
     },
 
     renderTranscriptPreview : function () {
-        var textToTransdownify = $('#text-to-transdownify').val(),
-            outputText = this.transdownify(textToTransdownify);
-        $('#live-preview').html(outputText);
+        var textToTransdownify = $('#text-to-transdownify').val()
+            //outputText = this.transdownify(textToTransdownify);
+        //$('#live-preview').html(outputText);
         console.log("render");
+        console.log(this.transdownify);
     }
 };
 
