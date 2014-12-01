@@ -14,8 +14,7 @@ var transdown = {
     },
     
     setupLivePreview : function () {
-        var transdownNamespace = this,
-            renderTranscriptPreview = transdownNamespace.createRenderer();
+        var renderTranscriptPreview = this.createRenderer();
         $('#text-to-transdownify').keyup(renderTranscriptPreview);
         renderTranscriptPreview();
     }
