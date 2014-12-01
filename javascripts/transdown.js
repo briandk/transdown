@@ -1,21 +1,25 @@
-var transdownNamespace = {
-    updatePreviewAfterEachKeypress : function () {
-        $('#text-to-transdownify').keyup(this.renderTranscriptPreview);
-    },
-
+var transdown = {
     transdownify : function (text) {
         return (text);
     },
-
-    renderTranscriptPreview : function () {
-        var textToTransdownify = $('#text-to-transdownify').val()
-            //outputText = this.transdownify(textToTransdownify);
-        //$('#live-preview').html(outputText);
-        console.log("render");
-        console.log(this.transdownify);
+    
+    createRenderer : function () {
+        var transdownNamespace = this,
+            renderer = function () {
+                var textToTransdownify = $('#text-to-transdownify').val(),
+                    outputText = transdownNamespace.transdownify(textToTransdownify);
+                $('#live-preview').html(outputText);
+            };
+        return (renderer);
+    },
+    
+    setupLivePreview : function () {
+        var transdownNamespace = this,
+            renderTranscriptPreview = transdownNamespace.createRenderer();
+        $('#text-to-transdownify').keyup(renderTranscriptPreview);
+        renderTranscriptPreview();
     }
 };
 
-transdown = Object.create(transdownNamespace);
-transdown.updatePreviewAfterEachKeypress();
-transdown.renderTranscriptPreview();
+transdownInstance = Object.create(transdown);
+transdownInstance.setupLivePreview();
