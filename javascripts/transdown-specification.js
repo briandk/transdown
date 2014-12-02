@@ -16,17 +16,17 @@ A turn consists of
 
 
 var transcript = {
-    episodes: [],
-}
+    episodes: []
+};
 
 var episode = {
     title: "",
-    turns: [],
-}
+    turns: []
+};
 
 var turn = {
     timestamp: "",
     speakerName: "",
     speech: "",
-    accompanyingMedia: "",
-}
+    accompanyingMedia: ""
+};
