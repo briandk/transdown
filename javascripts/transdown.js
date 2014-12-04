@@ -1,6 +1,9 @@
 var transdown = {
     transdownify : function (text) {
-        return (text);
+        var transcript = {},
+            blockSeparator = /\n{2,}/;
+        transcript.episodes = text.split(blockSeparator);
+        return (transcript);
     },
     
     createRenderer : function () {
