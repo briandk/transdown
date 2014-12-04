@@ -6,13 +6,17 @@
 
 Transdown lets you write raw transcript like this:
 
+    ### Rebecca's gestural pseudo-coding ###
 
-    ### Rebecca's gestural pseudo-coding    
+    [00:33:33.25] Rebecca: and then my thinking at least, is you
+    should be able to, um, say that "star p of i"
+    /mmhmm/ equals, uh, the title, and then you just do i++,
+    so then it’ll {{move to the next one}} !{makes looping
+    gesture with left hand} /OK/
 
-    [00:33:33.25] Rebecca: and then my thinking at least, is you should be able to, um, say that "star p of i" /mmhmm/ equals, uh, the title, and then you just do i++, so then it’ll {{move to the next one}} !{makes looping gesture with left hand} /OK/
-
-    [00:34:00.12] Rebecca: and you just keep {{saving each of the pointers}} !{left hand makes horizontal chops in the air, like rungs down a ladder}
-
+    [00:34:00.12] Rebecca: and you just keep {{saving each of
+    the pointers}} !{left hand makes horizontal chops in the
+    air, like rungs down a ladder}
 
 and have it automatically rendered as a beautiful table like this:
 
