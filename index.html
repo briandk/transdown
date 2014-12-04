@@ -1,94 +1,97 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Transdown : A lightweight syntax for writing and presenting transcripts of qualitative research data.">
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="description" content="Transdown : A lightweight syntax for writing and presenting transcripts of qualitative research data.">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/transdown-output.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/transdown-input.css">
-    <title>Transdown</title>
-  </head>
+  <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/transdown-output.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/transdown-input.css">
+  <title>Transdown</title>
+</head>
 
-  <body>
+<body>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/briandk/transdown">View on GitHub</a>
+  <!-- HEADER -->
+  <div id="header_wrap" class="outer">
+    <header class="inner">
+      <a id="forkme_banner" href="https://github.com/briandk/transdown">View on GitHub</a>
 
-          <h1 id="project_title">Transdown</h1>
-          <h2 id="project_tagline">A lightweight syntax for writing and presenting transcripts of qualitative research data.</h2>
+      <h1 id="project_title">Transdown</h1>
+      <h2 id="project_tagline">A lightweight syntax for writing and presenting transcripts of qualitative research data.</h2>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/briandk/transdown/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/briandk/transdown/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a id="what-does-transdown-do" class="anchor" href="#what-does-transdown-do" aria-hidden="true"><span class="octicon octicon-link"></span></a>What does Transdown do?</h3>
-
-<p>Transdown lets you write transcript and get automatically-generated beautiful web visualizations. So, you can write this:</p>
-<form class="well">
-<textarea name="text-to-transdownify" id="text-to-transdownify" cols="100%" rows="10" tabindex="4">
-### Rebecca's gestural pseudo-coding    
-
-[00:33:33.25] Rebecca: and then my thinking at least, is you should be able to, um, say that "star p of i" /mmhmm/ equals, uh, the title, and then you just do i++, so then it’ll {{move to the next one}} !{makes looping gesture with left hand}[1] /OK/
-
-[00:34:00.12] Rebecca: and you just keep {{saving each of the pointers}} !{left hand makes horizontal chops in the air, like rungs down a ladder}[2]
-    
-[1]: images/rebecca1.jpg
-[2]: images/rebecca2.png
-</textarea>
-</form>
-
-<p>
-  and get beautiful, styled, tabular output automatically, like this:
-</p>
-
-<div id="preview">
-  <div id="live-preview">
+      <section id="downloads">
+        <a class="zip_download_link" href="https://github.com/briandk/transdown/zipball/master">Download this project as a .zip file</a>
+        <a class="tar_download_link" href="https://github.com/briandk/transdown/tarball/master">Download this project as a tar.gz file</a>
+      </section>
+    </header>
   </div>
-</div>
 
-<table class="table table-striped transdown-output">
-<thead>
-<tr>
-  <th>Time</th>
-  <th>Speaker</th>
-  <th>Speech</th>
-  <th>Media</th>
-</tr>
-</thead>
+  <!-- MAIN CONTENT -->
+  <div id="main_content_wrap" class="outer">
+    <section id="main_content" class="inner">
+      <h3>
+        <a id="what-does-transdown-do" class="anchor" href="#what-does-transdown-do" aria-hidden="true"><span class="octicon octicon-link"></span></a>What does Transdown do?</h3>
 
-<tbody>
-<tr>
-  <td class="time">33:33</td>
-  <td class="speaker-name">Rebecca</td>
-  <td class="speech">And then my thinking at least, is you should be able to, um, say that "star p of i" <span class="speech-interruption">/mmhmm/</span> equals, uh, the title, and then you just do i++, so then it'll <strong>move to the next one</strong> {makes looping gesture with left hand} <span class="speech-interruption">/OK/</span></td>
-  <td>
-    <img class="accompanying-media"
-         src="images/rebecca1.jpg">
-  </td>
-</tr>
-<tr>
-  <td class="time">34:00</td>
-  <td class="speaker-name">Rebecca</td>
-  <td class="speech">and you just keep <strong>saving each of the pointers</strong> {left hand makes horizontal chops in the air, like rungs down a ladder}</td>
-  <td>
-    <img class="accompanying-media"
-         src="images/rebecca2.png">
-  </td>
-</tr>
-</tbody>
-</table>
+        <p>Transdown lets you write transcript and get automatically-generated beautiful web visualizations. So, you can write this:</p>
+        <form class="well">
+          <textarea name="text-to-transdownify" id="text-to-transdownify" cols="100%" rows="10" tabindex="4">
+            ### Rebecca's gestural pseudo-coding    
+
+            [00:33:33.25] Rebecca: and then my thinking at least, is you should be able to, um, say that "star p of i" /mmhmm/ equals, uh, the title, and then you just do i++, so then it’ll {{move to the next one}} !{makes looping gesture with left hand}[1] /OK/
+
+            [00:34:00.12] Rebecca: and you just keep {{saving each of the pointers}} !{left hand makes horizontal chops in the air, like rungs down a ladder}[2]
+            
+            [1]: images/rebecca1.jpg
+            [2]: images/rebecca2.png
+          </textarea>
+        </form>
+
+        <p>
+          and get beautiful, styled, tabular output automatically, like this:
+        </p>
+
+        <div id="preview">
+          <div id="live-preview">
+          </div>
+        </div>
+
+        <table class="table table-striped transdown-output">
+          <thead>
+            <tr>
+              <th class="episode-title" colspan="4">Rebecca's gestural pseudo-coding</th>
+            </tr>
+            <tr>
+              <th>Time</th>
+              <th>Speaker</th>
+              <th>Speech</th>
+              <th>Media</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td class="time">33:33</td>
+              <td class="speaker-name">Rebecca</td>
+              <td class="speech">And then my thinking at least, is you should be able to, um, say that "star p of i" <span class="speech-interruption">/mmhmm/</span> equals, uh, the title, and then you just do i++, so then it'll <strong>move to the next one</strong> {makes looping gesture with left hand} <span class="speech-interruption">/OK/</span></td>
+              <td>
+                <img class="accompanying-media"
+                src="images/rebecca1.jpg">
+              </td>
+            </tr>
+            <tr>
+              <td class="time">34:00</td>
+              <td class="speaker-name">Rebecca</td>
+              <td class="speech">and you just keep <strong>saving each of the pointers</strong> {left hand makes horizontal chops in the air, like rungs down a ladder}</td>
+              <td>
+                <img class="accompanying-media"
+                src="images/rebecca2.png">
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </section>
     </div>
 
@@ -101,7 +104,7 @@
     </div>
 
     
-  <script type="text/javascript" src="javascripts/dependencies/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="javascripts/transdown.js"></script>
+    <script type="text/javascript" src="javascripts/dependencies/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="javascripts/transdown.js"></script>
   </body>
-</html>
+  </html>
