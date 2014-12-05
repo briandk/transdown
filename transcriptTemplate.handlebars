@@ -1,34 +1,25 @@
-<table class="table table-striped transdown-output">
-  <thead>
-    <tr>
-      <th class="episode-title" colspan="4">Rebecca's gestural pseudo-coding</th>
-    </tr>
-    <tr>
-      <th>Time</th>
-      <th>Speaker</th>
-      <th>Speech</th>
-      <th>Media</th>
-    </tr>
-  </thead>
+{{transcript}}
+  {{#episodes}}
+  <table class="table table-striped transdown-output">
+    <thead>
+      <tr>
+        <th class="episode-title" colspan="3">{{title}}</th>
+      </tr>
+      <tr>
+        <th>Time</th>
+        <th>Speaker</th>
+        <th>Speech</th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <tr>
-      <td class="time">33:33</td>
-      <td class="speaker-name">Rebecca</td>
-      <td class="speech">And then my thinking at least, is you should be able to, um, say that "star p of i" <span class="speech-interruption">/mmhmm/</span> equals, uh, the title, and then you just do i++, so then it'll <strong>move to the next one</strong> {makes looping gesture with left hand} <span class="speech-interruption">/OK/</span></td>
-      <td>
-        <img class="accompanying-media"
-        src="images/rebecca1.jpg">
-      </td>
-    </tr>
-    <tr>
-      <td class="time">34:00</td>
-      <td class="speaker-name">Rebecca</td>
-      <td class="speech">and you just keep <strong>saving each of the pointers</strong> {left hand makes horizontal chops in the air, like rungs down a ladder}</td>
-      <td>
-        <img class="accompanying-media"
-        src="images/rebecca2.png">
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <tbody>
+    {{#turns}}
+      <tr>
+        <td class="time">{{timestamp}}</td>
+        <td class="speaker-name">{{speakerName}}</td>
+        <td class="speech">{{speech}}</td>
+      </tr>
+    </tbody>
+    {{/turns}}
+  </table>
+  {{/episodes}}

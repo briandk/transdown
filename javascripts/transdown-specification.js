@@ -30,22 +30,31 @@ var turn = {
     accompanyingMedia: ""
 };
 
-var createTurns = function (episode) {
-    // This regex pattern is greedy, so the first result returned will be the entire turn,
-    // followed by the subcomponents we actually want. When we access the resulting
-    // array, position 1 will be the timestamp, because position 0 is the entire 
-    // matched turn
-    var turnPattern = /^\[(\d?\d?:?\d\d:\d{2}\.?\d{0,2})\]\s*\n?(.*):\s*(.*)/;
-    return(episode)
-};
+var getTestTranscript = function () {
 
-var createEpisodes = function (transcript) {
-    var blockSeparator = /\n{2,}/,
-        episodes = transcript.split(blockSeparator);
-    return (episodes);
-};
+    var turns = [
+            {timestamp: "33:33",
+                speakerName: "Rebecca",
+                speech: "And then my thinking at least, is you should be able to, um, say that 'star p of i' /mmhmm/ equals, uh, the title, and then you just do i++, so then it'll move to the next one {makes looping gesture with left hand} /OK/",
+                accompanyingMedia: ""},
 
-var createTranscript = function (text) {
-    var transcript = {episodes: createEpisodes(text)};
+            {timestamp: "34:00",
+                speakerName: "Rebecca",
+                speech: "and you just keep saving each of the pointers {left hand makes horizontal chops in the air, like rungs down a ladder}",
+                accompanyingMedia: ""}
+        ],
+    
+        episode = {
+            title: "Rebecca's gestural pseudo-coding",
+            turns: turns
+        },
+    
+        transcript = {
+            episodes: episode
+        };
+    
     return (transcript);
 };
+
+
+
