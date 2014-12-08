@@ -1,0 +1,25 @@
+{{transcript}}
+  {{#episodes}}
+  <table class="table table-striped transdown-output">
+    <thead>
+      <tr>
+        <th class="episode-title" colspan="3">{{title}}</th>
+      </tr>
+      <tr>
+        <th>Time</th>
+        <th>Speaker</th>
+        <th>Speech</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    {{#turns}}
+      <tr>
+        <td class="time">{{timestamp}}</td>
+        <td class="speaker-name">{{speakerName}}</td>
+        <td class="speech">{{speech}}</td>
+      </tr>
+    </tbody>
+    {{/turns}}
+  </table>
+  {{/episodes}}
