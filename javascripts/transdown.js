@@ -3,7 +3,8 @@ var transdown = {
         var transcript = {},
             blockSeparator = /\n{2,}/;
         transcript.episodes = text.split(blockSeparator);
-        return (transcript);
+        var html = Handlebars.templates.transcriptTemplate(transcript);
+        return(html);
     },
     
     createRenderer : function () {
@@ -25,3 +26,4 @@ var transdown = {
 
 transdownInstance = Object.create(transdown);
 transdownInstance.setupLivePreview();
+var text = $('#text-to-transdownify').val();
