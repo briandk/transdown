@@ -1,10 +1,17 @@
 var transdown = {
     transdownify : function (text) {
-        var transcript = {},
-            blockSeparator = /\n{2,}/;
-        transcript.episodes = text.split(blockSeparator);
-        var html = Handlebars.templates.transcriptTemplate(transcript);
-        return(html);
+        var transcript = this.parseBlocks(text),
+            html = Handlebars.templates.transcriptTemplate(transcript);
+        console.log(transcript);
+        return (html);
+    },
+    
+    parseBlocks : function (text) {
+        var blockSeparator = /\n{2,}/,
+            turnPattern = /\s*(\[\d\d(?::\d\d)+(?:[;.]\d\d){0,1}\])\s+([^:]+):\s+(.*)/,
+            episodeTitlePattern = /^\s*#{1,6}\s*([^\s].*)/,
+            blocks = text.split(blockSeparator);
+        
     },
     
     createRenderer : function () {
@@ -21,6 +28,22 @@ var transdown = {
         var renderTranscriptPreview = this.createRenderer();
         $('#text-to-transdownify').keyup(renderTranscriptPreview);
         renderTranscriptPreview();
+    },
+    
+    transcript : {
+        episodes: []
+    },
+
+    episode : {
+        title: "",
+        turns: []
+    },
+
+    turn : {
+        timestamp: "",
+        speakerName: "",
+        speech: "",
+        accompanyingMedia: ""
     }
 };
 
