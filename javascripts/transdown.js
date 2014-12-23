@@ -6,18 +6,53 @@ var transdown = {
         return (html);
     },
     
+    parseBlock : function (block) {
+        
+        var conversationalTurn = /\s*(\[\d\d(?::\d\d)+(?:[;.]\d\d){0,1}\])\s+([^:]+):\s+(.*)/,
+            episodeTitle = /^\s*#{1,6}\s*([^\s].*)/,
+            episode = {},
+            rawTurnComponents = [],
+            turn;
+        
+        // if it's an episode title, make a new episode
+        if (episodeTitle.test(block) === true) {
+            episode.title = episodeTitle.exec(episode);
+            episode.turns = [];
+            this.episodes.push(episode);
+        
+        /* if it's a conversational turn, make a new turn and 
+           add it to the new episode */
+        } else if (conversationalTurn.test(block) === true) {
+            rawTurnComponents = conversationalTurn.exec(block);
+            turn = {
+                timestamp: rawTurnComponents[0],
+                speakerName: rawTurnComponents[1],
+                speech: rawTurnComponents[2],
+                accompanyingMedia: ""
+            };
+            
+            this.episodes[this.episodes.length - 1].turns.push(turn);
+        }
+        
+    },
+    
     parseBlocks : function (text) {
+        "use strict";
         var self = this,
             blockSeparator = /\n{2,}/,
-            turnPattern = /\s*(\[\d\d(?::\d\d)+(?:[;.]\d\d){0,1}\])\s+([^:]+):\s+(.*)/,
-            episodeTitlePattern = /^\s*#{1,6}\s*([^\s].*)/,
-            blocks = text.split(blockSeparator);
+            blocks = text.split(blockSeparator),
+            transcript = {
+                episodes: []
+            };
+        
+        blocks.map(self.parseBlock, transcript);
+        console.log(transcript);
         /*
         
         To parseBlocks:
-            separate the text into blocks
-            Create a new transcript object
-            process each block
+           + separate the text into blocks
+           + Create a new transcript object
+           + process each block
                 
         To process a block (by handing in a transcript object):
             If (it's an episode title):
@@ -48,22 +83,6 @@ var transdown = {
         var renderTranscriptPreview = this.createRenderer();
         $('#text-to-transdownify').keyup(renderTranscriptPreview);
         renderTranscriptPreview();
-    },
-    
-    transcript : {
-        episodes: []
-    },
-
-    episode : {
-        title: "",
-        turns: []
-    },
-
-    turn : {
-        timestamp: "",
-        speakerName: "",
-        speech: "",
-        accompanyingMedia: ""
     }
 };
 
