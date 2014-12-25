@@ -28,9 +28,9 @@ var transdown = {
         } else if (conversationalTurn.test(block) === true) {
             rawTurnComponents = conversationalTurn.exec(block);
             turn = {
-                timestamp: rawTurnComponents[0],
-                speakerName: rawTurnComponents[1],
-                speech: rawTurnComponents[2],
+                timestamp: rawTurnComponents[1],
+                speakerName: rawTurnComponents[2],
+                speech: rawTurnComponents[3],
                 accompanyingMedia: ""
             };
             
