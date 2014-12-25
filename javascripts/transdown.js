@@ -10,7 +10,7 @@ var transdown = {
     
     parseBlock : function (block) {
         
-        var conversationalTurn = /\s*(\[\d\d(?::\d\d)+(?:[;.]\d\d){0,1}\])\s+([^:]+):\s+(.*)/,
+        var conversationalTurn = /\s*\[(\d\d(?::\d\d)+(?:[;.]\d\d){0,1})\]\s+([^:]+):\s+(.*)/,
             episodeTitle = /^\s*#{1,6}\s*([^\s].*)/,
             episode = {},
             rawTurnComponents = [],
