@@ -88,7 +88,6 @@ var transdown = {
     }
 };
 
-transdownInstance = Object.create(transdown);
-// transdownInstance.setupLivePreview();
-var text = $('#text-to-transdownify').val();
-$('#text-to-transdownify').first().keyup(transdown.transdownify);
+var text = $('#text-to-transdownify');
+text.each(transdown.transdownify);
+text.first().keyup(transdown.transdownify);
