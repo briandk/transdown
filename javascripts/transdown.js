@@ -4,8 +4,7 @@ var transdown = {
         "use strict";
         var transcript = transdown.parseBlocks($(this).val()),
             html = Handlebars.templates.transcriptTemplate(transcript);
-        console.log(transcript);
-        console.log(html);
+//        console.log(transcript);
         $('#live-preview').html(html);
     },
     
@@ -19,7 +18,7 @@ var transdown = {
         
         // if it's an episode title, make a new episode
         if (episodeTitle.test(block) === true) {
-            episode.title = episodeTitle.exec(episode);
+            episode.title = episodeTitle.exec(block)[1];
             episode.turns = [];
             this.episodes.push(episode);
         
