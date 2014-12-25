@@ -1,9 +1,12 @@
 var transdown = {
-    transdownify : function (text) {
-        var transcript = this.parseBlocks(text),
+    
+    transdownify : function () {
+        "use strict";
+        var transcript = transdown.parseBlocks($(this).val()),
             html = Handlebars.templates.transcriptTemplate(transcript);
         console.log(transcript);
-        return (html);
+        console.log(html);
+        $('#live-preview').html(html);
     },
     
     parseBlock : function (block) {
@@ -38,15 +41,14 @@ var transdown = {
     
     parseBlocks : function (text) {
         "use strict";
-        var self = this,
-            blockSeparator = /\n{2,}/,
+        var blockSeparator = /\n{2,}/,
             blocks = text.split(blockSeparator),
             transcript = {
                 episodes: []
             };
         
-        blocks.map(self.parseBlock, transcript);
-        console.log(transcript);
+        blocks.map(transdown.parseBlock, transcript);
+        return (transcript);
         /*
         
         To parseBlocks:
@@ -87,5 +89,6 @@ var transdown = {
 };
 
 transdownInstance = Object.create(transdown);
-transdownInstance.setupLivePreview();
+// transdownInstance.setupLivePreview();
 var text = $('#text-to-transdownify').val();
+$('#text-to-transdownify').first().keyup(transdown.transdownify);
