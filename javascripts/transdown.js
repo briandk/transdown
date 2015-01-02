@@ -4,7 +4,6 @@ var transdown = {
         "use strict";
         var transcript = transdown.parseBlocks($(this).val()),
             html = Handlebars.templates.transcriptTemplate(transcript);
-//        console.log(transcript);
         $('#live-preview').html(html);
     },
     
@@ -68,23 +67,8 @@ var transdown = {
         
         */
         
-    },
-    
-    createRenderer : function () {
-        var transdownNamespace = this,
-            renderer = function () {
-                var textToTransdownify = $('#text-to-transdownify').val(),
-                    outputText = transdownNamespace.transdownify(textToTransdownify);
-                $('#live-preview').html(outputText);
-            };
-        return (renderer);
-    },
-    
-    setupLivePreview : function () {
-        var renderTranscriptPreview = this.createRenderer();
-        $('#text-to-transdownify').keyup(renderTranscriptPreview);
-        renderTranscriptPreview();
     }
+
 };
 
 var text = $('#text-to-transdownify');
