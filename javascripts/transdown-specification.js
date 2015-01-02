@@ -33,15 +33,19 @@ var turn = {
 var getTestTranscript = function () {
 
     var turns = [
-            {timestamp: "33:33",
+            {
+                timestamp: "33:33",
                 speakerName: "Rebecca",
                 speech: "And then my thinking at least, is you should be able to, um, say that 'star p of i' /mmhmm/ equals, uh, the title, and then you just do i++, so then it'll move to the next one {makes looping gesture with left hand} /OK/",
-                accompanyingMedia: ""},
+                accompanyingMedia: ""
+            },
 
-            {timestamp: "34:00",
+            {
+                timestamp: "34:00",
                 speakerName: "Rebecca",
                 speech: "and you just keep saving each of the pointers {left hand makes horizontal chops in the air, like rungs down a ladder}",
-                accompanyingMedia: ""}
+                accompanyingMedia: ""
+            }
         ],
     
         episode = {
