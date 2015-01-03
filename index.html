@@ -18,6 +18,9 @@
     <!-- Custom styles for this template -->
     <link href="/stylesheets/bootstrap/jumbotron.css" rel="stylesheet">
     <link href="/stylesheets/bootstrap/navbar-fixed-top.css" rel="stylesheet">
+    
+    <!-- Transdown-specific styles-->
+    <link href="/stylesheets/transdown-input.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -31,7 +34,12 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <button type="button" 
+                  class="navbar-toggle collapsed" 
+                  data-toggle="collapse" 
+                  data-target="#navbar" 
+                  aria-expanded="false" 
+                  aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -39,7 +47,8 @@
           </button>
           <a class="navbar-brand" href="#">Transdown</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="navbar" 
+             class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class=""><a href="#">Home</a></li>
             <li><a href="#try-it">Try It!</a></li>
@@ -52,7 +61,10 @@
       <div class="container">
         <h1>Transdown</h1>
         <p>A lightweight syntax for transcripts of qualitative data.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Try it &raquo;</a></p>
+        <p><a class="btn btn-primary btn-lg" 
+              href="#try-it" 
+              role="button">
+          Try it &raquo;</a></p>
       </div>
     </div>
 
@@ -75,18 +87,16 @@
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
       </div>
-      <div class="page-header"
+      <div class="row"
            id="try-it">
-        <h1>Transcriptulator
-          <small>Try Transdown for yourself</small>
-        </h1>
-      </div>
-      <div class="row">
-        <div class="span12">
+        <div class="col-md-12">
+          <h1 id="transcriptulator"
+              class="page-header">
+            Transcriptulator <small>Try Transdown for yourself, live in the broswer</small>
+          </h1>
           <form class="well">
             <textarea name="text-to-transdownify" 
-                      id="text-to-transdownify" 
-                      cols="100%" 
+                      id="text-to-transdownify"  
                       rows="10" 
                       tabindex="4">
 ### Rebecca's gestural pseudo-coding    
@@ -101,14 +111,19 @@
           </form>
         </div>
       </div>
-      <div class="page-header">
-        <h1>Live Preview
-          <small>What you get</small>
-        </h1>
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Live Preview
+            <small>What you get</small>
+          </h1>
+        </div>
       </div>
-      <div class="span6"
-           id="live-preview">
+      <div class="row">
+        <div class="col-md-12"
+             id="live-preview">
+        </div>
       </div>
+    </div><!-- End Container -->
       <hr>
       
       <footer>
