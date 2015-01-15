@@ -21,6 +21,9 @@
     
     <!-- Transdown-specific styles-->
     <link href="/stylesheets/transdown-input.css" rel="stylesheet">
+    
+    <!-- Octicons from Github-->
+    <link href="/octicons/octicons.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -31,7 +34,9 @@
 
   <body>
 
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar 
+                navbar-default 
+                navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" 
@@ -50,8 +55,15 @@
         <div id="navbar" 
              class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class=""><a href="#">Home</a></li>
-            <li><a href="#try-it">Try It!</a></li>
+            <li>
+              <a href="#try-it">
+                <span class="octicon octicon-pencil"></span>
+                Try It!</a></li>
+            <li>
+              <a href="https://github.com/briandk/transdown">
+                <span class="octicon octicon-mark-github"></span>
+                View Source Code on Github</a>
+            </li>
           </ul>
         </div>
       </div><!-- End Container -->
@@ -60,7 +72,8 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Transdown</h1>
+        <h1>
+          Transdown <span class="mega-octicon octicon-comment-discussion"></span></h1>
         <p>A lightweight syntax for transcripts of qualitative data.</p>
         <p><a class="btn btn-primary btn-lg" 
               href="#try-it" 
@@ -96,7 +109,9 @@
       </div>
       <div class="row">
         <div class="col-md-6">
-          <h3>Raw Input
+          <h3>
+            <span class="mega-octicon octicon-pencil"></span>
+            Raw Input
             <small>Put Your Transcript Here</small>
           </h3>
           <form class="well">
@@ -116,7 +131,9 @@
         </div>
         <div class="col-md-6
                     container">
-          <h3>Live Preview
+          <h3>
+            <span class="mega-octicon octicon-file-text"></span>
+            Live Preview
             <small>What you get</small>
           </h3>
           <div id="live-preview">
