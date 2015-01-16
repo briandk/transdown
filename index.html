@@ -1,112 +1,170 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-<head>
-  <meta charset='utf-8'>
-  <meta http-equiv="X-UA-Compatible" content="chrome=1">
-  <meta name="description" content="Transdown : A lightweight syntax for writing and presenting transcripts of qualitative research data.">
+    <title>Transdown: A Lightweight Syntax for Transcripts</title>
 
-  <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/transdown-output.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/transdown-input.css">
-  <title>Transdown</title>
-</head>
+    
+    
+    <!-- Bootstrap core CSS -->
+    <link href="/stylesheets/bootstrap/bootstrap.css" rel="stylesheet">
+    <link href="/stylesheets/bootstrap/bootstrap-theme.css" rel="stylesheet">
 
-<body>
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/bootstrap/jumbotron.css" rel="stylesheet">
+    <link href="/stylesheets/bootstrap/navbar-fixed-top.css" rel="stylesheet">
+    
+    <!-- Transdown-specific styles-->
+    <link href="/stylesheets/transdown-input.css" rel="stylesheet">
+    <link href="/stylesheets/transdown-output.css" rel="stylesheet">
+    
+    <!-- Octicons from Github-->
+    <link href="/octicons/octicons.css" rel="stylesheet">
 
-  <!-- HEADER -->
-  <div id="header_wrap" class="outer">
-    <header class="inner">
-      <a id="forkme_banner" href="https://github.com/briandk/transdown">View on GitHub</a>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
 
-      <h1 id="project_title">Transdown</h1>
-      <h2 id="project_tagline">A lightweight syntax for writing and presenting transcripts of qualitative research data.</h2>
+  <body>
 
-      <section id="downloads">
-        <a class="zip_download_link" href="https://github.com/briandk/transdown/zipball/master">Download this project as a .zip file</a>
-        <a class="tar_download_link" href="https://github.com/briandk/transdown/tarball/master">Download this project as a tar.gz file</a>
-      </section>
-    </header>
-  </div>
+    <nav class="navbar 
+                navbar-default 
+                navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" 
+                  class="navbar-toggle collapsed" 
+                  data-toggle="collapse" 
+                  data-target="#navbar" 
+                  aria-expanded="false" 
+                  aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+            <span class="octicon octicon-comment-discussion"></span>
+            Transdown</a>
+        </div>
+        <div id="navbar" 
+             class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="#try-it">
+                <span class="octicon octicon-pencil"></span>
+                Try It!</a></li>
+            <li>
+              <a href="https://github.com/briandk/transdown">
+                <span class="octicon octicon-mark-github"></span>
+                View Source Code on Github</a>
+            </li>
+          </ul>
+        </div>
+      </div><!-- End Container -->
+    </nav>
 
-  <!-- MAIN CONTENT -->
-  <div id="main_content_wrap" class="outer">
-    <section id="main_content" class="inner">
-      <h3>
-        <a id="what-does-transdown-do" class="anchor" href="#what-does-transdown-do" aria-hidden="true"><span class="octicon octicon-link"></span></a>What does Transdown do?</h3>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>
+          Transdown <span class="mega-octicon octicon-comment-discussion"></span></h1>
+        <p>A lightweight syntax for transcripts of qualitative data.</p>
+        <p><a class="btn btn-primary btn-lg" 
+              href="#try-it" 
+              role="button">
+          Try it &raquo;</a></p>
+      </div>
+    </div>
 
-        <p>Transdown lets you write transcript and get automatically-generated beautiful web visualizations. So, you can write this:</p>
-        <form class="well">
-          <textarea name="text-to-transdownify" id="text-to-transdownify" cols="100%" rows="10" tabindex="4">
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Simple</h2>
+          <p>Transdown uses simple syntactical conventions, making it easy for humans to read and write </p>
+        </div>
+        <div class="col-md-4">
+          <h2>Powerful</h2>
+          <p>Transdown comes with built-in support for common transcript elements including timestamps, speaker names, and associated media like images, animations, and sounds. </p>
+       </div>
+        <div class="col-md-4">
+          <h2>Extensible</h2>
+          <p>Transdown can grow and respond to community needs over time to support a larger set of linguistic features </p>
+        </div>
+      </div>
+      <div class="row"
+           id="try-it">
+        <div class="col-md-12">
+          <h1 id="transcriptulator"
+              class="page-header">
+            Transcriptulator <small>Try Transdown for yourself, live in the broswer</small>
+          </h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h3>
+            <span class="mega-octicon octicon-pencil"></span>
+            Raw Input
+            <small>Put Your Transcript Here</small>
+          </h3>
+          <form class="well">
+            <textarea name="text-to-transdownify" 
+                      id="text-to-transdownify"  
+                      rows="10" 
+                      tabindex="4">
 ### Rebecca's gestural pseudo-coding    
 
-[00:33:33.25] Rebecca: and then my thinking at least, is you should be able to, um, say that "star p of i" /mmhmm/ equals, uh, the title, and then you just do i++, so then it’ll {{move to the next one}} !{makes looping gesture with left hand}[1] /OK/
+[33:33] Rebecca: and then my thinking at least, is you should be able to, um, say that "star p of i" /mmhmm/ equals, uh, the title, and then you just do i++, so then it’ll {{move to the next one}} !{makes looping gesture with left hand}[1] /OK/
 
-[00:34:00.12] Rebecca: and you just keep {{saving each of the pointers}} !{left hand makes horizontal chops in the air, like rungs down a ladder}[2]
+[34:00] Rebecca: and you just keep {{saving each of the pointers}} !{left hand makes horizontal chops in the air, like rungs down a ladder}[2]
 
 [1]: images/rebecca1.jpg
-[2]: images/rebecca2.png
-          </textarea>
-        </form>
-
-        <p>
-          and get beautiful, styled, tabular output automatically, like this:
-        </p>
-
-        <div id="preview">
+[2]: images/rebecca2.png</textarea>
+          </form>
+        </div>
+        <div class="col-md-6
+                    container">
+          <h3>
+            <span class="mega-octicon octicon-file-text"></span>
+            Live Preview
+            <small>What you get</small>
+          </h3>
           <div id="live-preview">
           </div>
         </div>
+      </div>    
+    </div><!-- End Container -->
+    <hr>
+     
+    <footer class="footer">
+      <div class="container">
+        <p class="copyright 
+                  text-muted">
+          Transdown maintained by <a href="https://github.com/briandk">briandk</a></p>
+        <p class="text-muted">
+          Published with <a href="http://pages.github.com">GitHub Pages</a></p>  
+      </div>
+    </footer>
+      
 
-        <table class="table table-striped transdown-output">
-          <thead>
-            <tr>
-              <th class="episode-title" colspan="4">Rebecca's gestural pseudo-coding</th>
-            </tr>
-            <tr>
-              <th>Time</th>
-              <th>Speaker</th>
-              <th>Speech</th>
-              <th>Media</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td class="time">33:33</td>
-              <td class="speaker-name">Rebecca</td>
-              <td class="speech">And then my thinking at least, is you should be able to, um, say that "star p of i" <span class="speech-interruption">/mmhmm/</span> equals, uh, the title, and then you just do i++, so then it'll <strong>move to the next one</strong> {makes looping gesture with left hand} <span class="speech-interruption">/OK/</span></td>
-              <td>
-                <img class="accompanying-media"
-                src="images/rebecca1.jpg">
-              </td>
-            </tr>
-            <tr>
-              <td class="time">34:00</td>
-              <td class="speaker-name">Rebecca</td>
-              <td class="speech">and you just keep <strong>saving each of the pointers</strong> {left hand makes horizontal chops in the air, like rungs down a ladder}</td>
-              <td>
-                <img class="accompanying-media"
-                src="images/rebecca2.png">
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Transdown maintained by <a href="https://github.com/briandk">briandk</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
     <script type="text/javascript" src="javascripts/dependencies/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="javascripts/dependencies/handlebars.runtime-v2.0.0.js"></script>
+    <script type="text/javascript" src="javascripts/dependencies/bootstrap.js"></script>
     <script type="text/javascript" src="javascripts/templates.js"></script>
     <script type="text/javascript" src="javascripts/transdown.js"></script>
   </body>
-  </html>
+</html>
