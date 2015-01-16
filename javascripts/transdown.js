@@ -1,5 +1,4 @@
 var transdown = {
-    
     transdownify : function () {
         "use strict";
         var transcript = transdown.parseBlocks($(this).val()),
@@ -8,7 +7,7 @@ var transdown = {
     },
     
     parseBlock : function (block) {
-        
+        "use strict";
         var conversationalTurn = /\s*\[(\d\d(?::\d\d)+(?:[;.]\d\d){0,1})\]\s+([^:]+):\s+(.*)/,
             episodeTitle = /^\s*#{1,6}\s*([^\s].*)/,
             episode = {},
