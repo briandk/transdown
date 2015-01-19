@@ -10,6 +10,7 @@ var transdown = {
         "use strict";
         var conversationalTurn = /\s*\[(\d\d(?::\d\d)+(?:[;.]\d\d){0,1})\]\s+([^:]+):\s+(.*)/,
             episodeTitle = /^\s*#{1,6}\s*([^\s].*)/,
+            referenceLink = /^\[([^\]])*\]:\s(.*)/,
             episode = {},
             rawTurnComponents = [],
             turn;
@@ -20,8 +21,8 @@ var transdown = {
             episode.turns = [];
             this.episodes.push(episode);
         
-        /* if it's a conversational turn, make a new turn and 
-           add it to the new episode */
+        // if it's a conversational turn, make a new turn and 
+        // add it to the new episode
         } else if (conversationalTurn.test(block) === true) {
             rawTurnComponents = conversationalTurn.exec(block);
             turn = {
@@ -34,8 +35,18 @@ var transdown = {
             this.episodes[this.episodes.length - 1].turns.push(turn);
         }
         
+        // If it's the beginning of a reference list,
+            // split on \n
+            // readInReferences
+            
+        // To ReadInReferences
+            // create a reference list object {}
+            // for reference in referenceList (map with context)
+                // if (the reference does not currently exist)
+                    // create a new key whose value is that reference
+        
     },
-    
+   
     parseBlocks : function (text) {
         "use strict";
         var blockSeparator = /\n{2,}/,
