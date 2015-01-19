@@ -13,7 +13,10 @@ var transdown = {
             referenceLink = /^\[([^\]])*\]:\s(.*)/,
             episode = {},
             rawTurnComponents = [],
-            turn;
+            turn = {},
+            references = [],
+            key = "",
+            value = "";
         
         // if it's an episode title, make a new episode
         if (episodeTitle.test(block) === true) {
@@ -33,7 +36,25 @@ var transdown = {
             };
             
             this.episodes[this.episodes.length - 1].turns.push(turn);
+        } else if (referenceLink.test(block) === true) {
+            references = block.split("\n");
+            references.map(
+                function (ref) {
+                    var reference = [],
+                        key = "",
+                        value = "";
+                    
+                    if (referenceLink.test(ref) === true) {
+                        reference = referenceLink.exec(ref);
+                        key = reference[1];
+                        value = reference[2];
+                        transdown.referencesDictionary[key] = value;
+                    }
+                }
+            );
+            console.log(transdown.referencesDictionary);
         }
+                
         
         // If it's the beginning of a reference list,
             // split on \n
@@ -77,7 +98,9 @@ var transdown = {
         
         */
         
-    }
+    },
+    
+    referencesDictionary : {}
 
 };
 
