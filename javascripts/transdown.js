@@ -30,6 +30,40 @@ var transdown = {
             key = "",
             value = "";
         
+        // There are several different kinds of blocks
+        //   - A block with references ([1]: something.html)
+        //   - An episode title
+        //   - A conversational turn
+        //
+        // There are also several different kinds of patterns
+        //   - "### something", which is an episode title
+        //   - "[1]: something", which is a reference
+        //   - "[03:45] Brian: something", which is a conversational turn WITH timestamp
+        //   - "Brian: Something", which is a conversational turn WITHOUT timestamp
+        //   - "[03:45] Something", which is a conversational turn WITHOUT speaker
+        //
+        // It's worth thinking about the logical cascade of pattern matching
+        // 
+        // If (the first character is "#")
+        //   - It's definitely an episode title
+        //
+        // If (the pattern is "[~]: something
+        //   - It's definitely a reference definition
+        //
+        // Otherwise, try parsing it as a turn
+        //
+        // TO Try parsing it as a turn:
+        //   If (it starts with "[03:45]" && there IS speaker name) 
+        //      Parse it as a FULL turn, including timestamp and speaker
+        //   Else If (it starts with "[03:45]" && there's NO speaker name)
+        //      Parse it as a turn WITHOUT speaker
+        //   Else
+        //      Parse it as a turn WITHOUT a timestamp
+        //
+        
+        
+        
+        
         // if it's an episode title, make a new episode
         if (episodeTitle.test(block) === true) {
             episode.title = episodeTitle.exec(block)[1];
@@ -46,8 +80,8 @@ var transdown = {
                 speech: rawTurnComponents[3],
                 accompanyingMedia: ""
             };
-            
             this.episodes[this.episodes.length - 1].turns.push(turn);
+            
         } else if (referenceLink.test(block) === true) {
             references = block.split("\n");
             references.map(
@@ -65,18 +99,6 @@ var transdown = {
                 }
             );
         }
-                
-        
-        // If it's the beginning of a reference list,
-            // split on \n
-            // readInReferences
-            
-        // To ReadInReferences
-            // create a reference list object {}
-            // for reference in referenceList (map with context)
-                // if (the reference does not currently exist)
-                    // create a new key whose value is that reference
-        
     },
    
     parseBlocks : function (text) {
@@ -100,7 +122,7 @@ var transdown = {
             If (it's an episode title):
                 Create a new episode with that as the title
                 Append the episode to the end of the episodes array
-            If (it's a turn):
+            Else If (it's a turn):
                 Create a new conversationalTurn object
                 Get the last episode
                 Append the turn to the array of turns in the last episode
