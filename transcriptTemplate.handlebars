@@ -11,6 +11,7 @@
         <th>Time</th>
         <th>Speaker</th>
         <th>Speech</th>
+        <th>Media</th>
       </tr>
     </thead>
 
@@ -20,6 +21,10 @@
         <td class="time">{{timestamp}}</td>
         <td class="speaker-name">{{speakerName}}</td>
         <td class="speech">{{speech}}</td>
+        <td>
+          <img src="{{accompanyingMedia}}"
+                 class="accompanying-media">
+        </td>
       </tr>
     </tbody>
     {{/turns}}

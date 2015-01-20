@@ -2,8 +2,20 @@ var transdown = {
     transdownify : function () {
         "use strict";
         var transcript = transdown.parseBlocks($(this).val()),
-            html = Handlebars.templates.transcriptTemplate(transcript);
+            html = "",
+            output;
+        output = transcript.episodes.map(
+            function (x) {
+                var output;
+                output = x.turns.map(
+                    transdown.processLinks
+                );
+                return (output);
+            }
+        );
+        html = Handlebars.templates.transcriptTemplate(transcript);
         $('#live-preview').html(html);
+        return (output);
     },
     
     parseBlock : function (block) {
@@ -52,7 +64,6 @@ var transdown = {
                     }
                 }
             );
-            console.log(transdown.referencesDictionary);
         }
                 
         
@@ -100,8 +111,25 @@ var transdown = {
         
     },
     
-    referencesDictionary : {}
+    referencesDictionary : {},
+    
+    processLinks : function (turn) {
+        var referenceLinkPattern = /(!\[[^\]]*\])\[([^\]])*\]/,
+            inlineLinkPattern = /(!\[[^\]]*\])\[([^\]])*\]/,
+            key = "",
+            speech = turn.speech;
+        
+        turn.accompanyingMedia = "";
+        
+        if (referenceLinkPattern.test(speech) === true) {
+            key = referenceLinkPattern.exec(speech)[2];
+            turn.accompanyingMedia = transdown.referencesDictionary[key];
+        } else if (inlineLinkPattern.test(speech) === true) {
+            turn.accompanyingMedia = inlineLinkPattern.exec(speech)[2];
+        }
+        return (turn);
 
+    }
 };
 
 var text = $('#text-to-transdownify');

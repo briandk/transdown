@@ -10,8 +10,8 @@
 .speech {
     vertical-align: top;
 }
-.accompanying-media {
-    width: 95%;
+img.accompanying-media {
+    width: 100%;
 }
 
 .speech-interruption {
