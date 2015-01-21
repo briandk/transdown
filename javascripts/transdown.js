@@ -4,18 +4,22 @@ var transdown = {
         var transcript = transdown.parseBlocks($(this).val()),
             html = "",
             output;
-        output = transcript.episodes.map(
-            function (x) {
-                var output;
-                output = x.turns.map(
-                    transdown.processLinks
+        
+        transcript.episodes.forEach(
+            function (element, index) {
+                element.turns.map(
+                    transdown.processLinks,
+                    element
                 );
-                return (output);
-            }
+                element.columns =  transdown.getColumnNames(element);
+                element.numberOfColumns = element.columns.length;
+            },
+            transcript
         );
+        
         html = Handlebars.templates.transcriptTemplate(transcript);
         $('#live-preview').html(html);
-        return (output);
+        console.log(transcript);
     },
     
     parseBlock : function (block) {
@@ -30,41 +34,43 @@ var transdown = {
             turn = {},
             references = [],
             key = "",
+            latestEpisode = this.episodes[this.episodes.length - 1],
             value = "";
         
         // if it's an episode title, make a new episode
         if (episodeTitle.test(block) === true) {
             episode.title = episodeTitle.exec(block)[1];
+            episode.columns = [];
             episode.turns = [];
             this.episodes.push(episode);
         
         // otherwise, if it's a reference list
         } else if (referenceLink.test(block) === true) {
             transdown.parseReferencesList(block, referenceLink);
+            this.episodehasAccompanyingMedia = true;
             
         // otherwise, if it's speech
         } else if (speechWithTimestampAndSpeaker.test(block) === true) {
             transdown.parseSpeechWithTimestampAndSpeaker(
                 block,
                 speechWithTimestampAndSpeaker,
-                this
+                latestEpisode
             );
         } else if (speechWithTimestamp.test(block) === true) {
             transdown.parseSpeechWithTimestamp(
                 block,
                 speechWithTimestamp,
-                this
-            );  
+                latestEpisode
+            );
         } else if (speechWithSpeaker.test(block) === true) {
             transdown.parseSpeechWithSpeaker(
                 block,
                 speechWithSpeaker,
-                this
+                latestEpisode
             );
         
         // Otherwise, write it out somewhere so the user gets realtime feedback
         } else {
-            console.log(block);
             turn = {
                 timestamp: "",
                 speaker: "",
@@ -75,42 +81,50 @@ var transdown = {
         }
     },
     
-    parseSpeechWithTimestamp : function (block, pattern, transcript) {
+    parseSpeechWithTimestamp : function (block, pattern, episode) {
         var rawTurnComponents = pattern.exec(block),
             turn = {
                 timestamp: rawTurnComponents[1],
                 speech: rawTurnComponents[2]
             };
-        transcript.episodes[transcript.episodes.length - 1].turns.push(turn);
+        episode.turns.push(turn);
+        episode.hasTimestamps = true;
     },
     
-    parseSpeechWithSpeaker : function (block, pattern, transcript) {
+    parseSpeechWithSpeaker : function (block, pattern, episode) {
         var rawTurnComponents = pattern.exec(block),
             turn = {
                 speakerName: rawTurnComponents[1],
                 speech: rawTurnComponents[2]
             };
-        transcript.episodes[transcript.episodes.length - 1].turns.push(turn);
+        episode.turns.push(turn);
+        episode.hasSpeakerNames = true;
     },
     
-    parseSpeechWithTimestampAndSpeaker : function (block, pattern, transcript) {
+    parseSpeechWithTimestampAndSpeaker : function (block, pattern, episode) {
         var rawTurnComponents = pattern.exec(block),
             turn = {
                 timestamp: rawTurnComponents[1],
                 speakerName: rawTurnComponents[2],
                 speech: rawTurnComponents[3]
             };
-        transcript.episodes[transcript.episodes.length - 1].turns.push(turn);
+        episode.turns.push(turn);
+        episode.hasSpeakerNames = true;
+        episode.hasTimestamps = true;
     },
             
    
-    parseBlocks : function (text) {
+    parseBlocks : function (text, transcript) {
         "use strict";
         var blockSeparator = /\n{2,}/,
             blocks = text.split(blockSeparator),
             transcript = {
-                episodes: []
+                episodes : [],
+                hasSpeakerNames : false,
+                hasAccompanyingMedia : false,
+                hasTimestamps : false
             };
+        
         
         blocks.map(transdown.parseBlock, transcript);
         return (transcript);
@@ -155,6 +169,33 @@ var transdown = {
     
     referencesDictionary : {},
     
+    getColumnNames : function (episode) {
+        var columns = ["Speech"],
+            speechPosition = columns.indexOf("Speech");
+        
+        if (episode.hasTimestamps === true) {
+            console.log("has timestamp");
+            columns.unshift("Time");
+        }
+        if (episode.hasSpeakerNames === true) {
+            console.log("has speaker names");
+            speechPosition = columns.indexOf("speech");
+            columns.splice(speechPosition, 0, "Speaker");
+        }
+        if (episode.hasAccompanyingMedia === true) {
+            console.log("has accompanying media");
+            columns.push("Media");
+        }
+        return (
+            [
+                "Time",
+                "Speaker",
+                "Speech",
+                "Media"
+            ]
+        );
+    },
+    
     processLinks : function (turn) {
         var referenceLinkPattern = /(!\[[^\]]*\])\[([^\]])*\]/,
             inlineLinkPattern = /(!\[[^\]]*\])\[([^\]])*\]/,
@@ -166,12 +207,15 @@ var transdown = {
         if (referenceLinkPattern.test(speech) === true) {
             key = referenceLinkPattern.exec(speech)[2];
             turn.accompanyingMedia = transdown.referencesDictionary[key];
+            this.hasAccompanyingMedia = true;
         } else if (inlineLinkPattern.test(speech) === true) {
             turn.accompanyingMedia = inlineLinkPattern.exec(speech)[2];
+            this.hasAccompanyingMedia = true;
         }
         return (turn);
 
-    }
+    },
+    
 };
 
 var text = $('#text-to-transdownify');

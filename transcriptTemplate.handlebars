@@ -1,17 +1,15 @@
-{{transcript}}
-  {{#episodes}}
+  {{#each episodes}}
   <table class="table
                 table-hover
                 transdown-output">
     <thead>
       <tr>
-        <th class="episode-title" colspan="3">{{title}}</th>
+        <th class="episode-title" colspan="{{numberOfColumns}}">{{title}}</th>
       </tr>
       <tr>
-        <th>Time</th>
-        <th>Speaker</th>
-        <th>Speech</th>
-        <th>Media</th>
+        {{#each columns}}
+          <td>{{this}}</td>
+        {{/each}}
       </tr>
     </thead>
 
@@ -23,10 +21,10 @@
             <td class="speech">{{speech}}</td>
             <td>
               <img src="{{accompanyingMedia}}"
-                     class="accompanying-media">
-            </td>
+                     class="accompanying-media"></td>
           </tr>
         {{/turns}}
     </tbody>
   </table>
-  {{/episodes}}
+  {{/each}}
+
