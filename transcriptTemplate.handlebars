@@ -1,25 +1,30 @@
-{{transcript}}
-  {{#episodes}}
-  <table class="table table-striped transdown-output">
+  {{#each episodes}}
+  <table class="table
+                table-hover
+                transdown-output">
     <thead>
       <tr>
-        <th class="episode-title" colspan="3">{{title}}</th>
+        <th class="episode-title" colspan="{{numberOfColumns}}">{{title}}</th>
       </tr>
       <tr>
-        <th>Time</th>
-        <th>Speaker</th>
-        <th>Speech</th>
+        {{#each columns}}
+          <th>{{this}}</th>
+        {{/each}}
       </tr>
     </thead>
 
     <tbody>
-    {{#turns}}
-      <tr>
-        <td class="time">{{timestamp}}</td>
-        <td class="speaker-name">{{speakerName}}</td>
-        <td class="speech">{{speech}}</td>
-      </tr>
+        {{#turns}}
+          <tr>
+            <td class="time">{{timestamp}}</td>
+            <td class="speaker-name">{{speakerName}}</td>
+            <td class="speech">{{speech}}</td>
+            <td>
+              <img src="{{accompanyingMedia}}"
+                     class="accompanying-media"></td>
+          </tr>
+        {{/turns}}
     </tbody>
-    {{/turns}}
   </table>
-  {{/episodes}}
+  {{/each}}
+
