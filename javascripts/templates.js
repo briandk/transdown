@@ -15,9 +15,9 @@ templates['transcriptTemplate'] = template({"1":function(depth0,helpers,partials
   return buffer + "    </tbody>\n  </table>\n";
 },"2":function(depth0,helpers,partials,data) {
   var lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "          <td>"
+  return "          <th>"
     + escapeExpression(lambda(depth0, depth0))
-    + "</td>\n";
+    + "</th>\n";
 },"4":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
   return "          <tr>\n            <td class=\"time\">"
