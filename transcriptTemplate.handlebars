@@ -16,17 +16,17 @@
     </thead>
 
     <tbody>
-    {{#turns}}
-      <tr>
-        <td class="time">{{timestamp}}</td>
-        <td class="speaker-name">{{speakerName}}</td>
-        <td class="speech">{{speech}}</td>
-        <td>
-          <img src="{{accompanyingMedia}}"
-                 class="accompanying-media">
-        </td>
-      </tr>
+        {{#turns}}
+          <tr>
+            <td class="time">{{timestamp}}</td>
+            <td class="speaker-name">{{speakerName}}</td>
+            <td class="speech">{{speech}}</td>
+            <td>
+              <img src="{{accompanyingMedia}}"
+                     class="accompanying-media">
+            </td>
+          </tr>
+        {{/turns}}
     </tbody>
-    {{/turns}}
   </table>
   {{/episodes}}

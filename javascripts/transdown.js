@@ -32,40 +32,6 @@ var transdown = {
             key = "",
             value = "";
         
-        // There are several different kinds of blocks
-        //   - A block with references ([1]: something.html)
-        //   - An episode title
-        //   - A conversational turn
-        //
-        // There are also several different kinds of patterns
-        //   - "### something", which is an episode title
-        //   - "[1]: something", which is a reference
-        //   - "[03:45] Brian: something", which is a conversational turn WITH timestamp
-        //   - "Brian: Something", which is a conversational turn WITHOUT timestamp
-        //   - "[03:45] Something", which is a conversational turn WITHOUT speaker
-        //
-        // It's worth thinking about the logical cascade of pattern matching
-        // 
-        // If (the first character is "#")
-        //   - It's definitely an episode title
-        //
-        // If (the pattern is "[~]: something
-        //   - It's definitely a reference definition
-        //
-        // Otherwise, try parsing it as a turn
-        //
-        // TO Try parsing it as a turn:
-        //   If (it starts with "[03:45]" && there IS speaker name) 
-        //      Parse it as a FULL turn, including timestamp and speaker
-        //   Else If (it starts with "[03:45]" && there's NO speaker name)
-        //      Parse it as a turn WITHOUT speaker
-        //   Else
-        //      Parse it as a turn WITHOUT a timestamp
-        //
-        
-        
-        
-        
         // if it's an episode title, make a new episode
         if (episodeTitle.test(block) === true) {
             episode.title = episodeTitle.exec(block)[1];
@@ -74,20 +40,67 @@ var transdown = {
         
         // if it's a conversational turn, make a new turn and 
         // add it to the new episode
+        } else if (referenceLink.test(block) === true) {
+            transdown.parseReferencesList(block, referenceLink);
         } else if (speechWithTimestampAndSpeaker.test(block) === true) {
-            rawTurnComponents = speechWithTimestampAndSpeaker.exec(block);
+            transdown.parseSpeechWithTimestampAndSpeaker(
+                block,
+                speechWithTimestampAndSpeaker,
+                this
+            );
+        } else if (speechWithTimestamp.test(block) === true) {
+            transdown.parseSpeechWithTimestamp(
+                block,
+                speechWithTimestamp,
+                this
+            );  
+        } else if (speechWithSpeaker.test(block) === true) {
+            transdown.parseSpeechWithSpeaker(
+                block,
+                speechWithSpeaker,
+                this
+            );
+        }
+//        } else {
+//            console.log("fallthrough " + block);
+//            turn = {
+//                timestamp: "",
+//                speaker: "",
+//                speech: block,
+//                accompanyingMedia: ""
+//            };
+//            transcript.episodes[transcript.episodes.length - 1].turns.push(turn);
+//        }
+    },
+    
+    parseSpeechWithTimestamp : function (block, pattern, transcript) {
+        var rawTurnComponents = pattern.exec(block),
+            turn = {
+                timestamp: rawTurnComponents[1],
+                speech: rawTurnComponents[2]
+            };
+        transcript.episodes[transcript.episodes.length - 1].turns.push(turn);
+    },
+    
+    parseSpeechWithSpeaker : function (block, pattern, transcript) {
+        var rawTurnComponents = pattern.exec(block),
+            turn = {
+                speakerName: rawTurnComponents[1],
+                speech: rawTurnComponents[2]
+            };
+        transcript.episodes[transcript.episodes.length - 1].turns.push(turn);
+    },
+    
+    parseSpeechWithTimestampAndSpeaker : function (block, pattern, transcript) {
+        var rawTurnComponents = pattern.exec(block),
             turn = {
                 timestamp: rawTurnComponents[1],
                 speakerName: rawTurnComponents[2],
-                speech: rawTurnComponents[3],
-                accompanyingMedia: ""
+                speech: rawTurnComponents[3]
             };
-            this.episodes[this.episodes.length - 1].turns.push(turn);
-            
-        } else if (referenceLink.test(block) === true) {
-            transdown.parseReferencesList(block, referenceLink);
-        }
+        transcript.episodes[transcript.episodes.length - 1].turns.push(turn);
     },
+            
    
     parseBlocks : function (text) {
         "use strict";
