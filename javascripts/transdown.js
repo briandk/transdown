@@ -20,7 +20,9 @@ var transdown = {
     
     parseBlock : function (block) {
         "use strict";
-        var conversationalTurn = /\s*\[(\d\d(?::\d\d)+(?:[;.]\d\d){0,1})\]\s+([^:]+):\s+(.*)/,
+        var speechWithTimestampAndSpeaker = /\s*\[(\d\d(?::\d\d)+(?:[;.]\d\d){0,1})\]\s+([^:]+):\s+(.*)/,
+            speechWithSpeaker = /^\s*([^:]*):\s+(.*)/,
+            speechWithTimestamp = /\s*\[(\d\d(?::\d\d)+(?:[;.]\d\d){0,1})\]\s+(.*)/,
             episodeTitle = /^\s*#{1,6}\s*([^\s].*)/,
             referenceLink = /^\[([^\]])*\]:\s(.*)/,
             episode = {},
@@ -72,8 +74,8 @@ var transdown = {
         
         // if it's a conversational turn, make a new turn and 
         // add it to the new episode
-        } else if (conversationalTurn.test(block) === true) {
-            rawTurnComponents = conversationalTurn.exec(block);
+        } else if (speechWithTimestampAndSpeaker.test(block) === true) {
+            rawTurnComponents = speechWithTimestampAndSpeaker.exec(block);
             turn = {
                 timestamp: rawTurnComponents[1],
                 speakerName: rawTurnComponents[2],
@@ -83,21 +85,7 @@ var transdown = {
             this.episodes[this.episodes.length - 1].turns.push(turn);
             
         } else if (referenceLink.test(block) === true) {
-            references = block.split("\n");
-            references.map(
-                function (ref) {
-                    var reference = [],
-                        key = "",
-                        value = "";
-                    
-                    if (referenceLink.test(ref) === true) {
-                        reference = referenceLink.exec(ref);
-                        key = reference[1];
-                        value = reference[2];
-                        transdown.referencesDictionary[key] = value;
-                    }
-                }
-            );
+            transdown.parseReferencesList(block, referenceLink);
         }
     },
    
@@ -130,7 +118,24 @@ var transdown = {
         See also: https://gist.github.com/briandk/e561fc59e81eaebd2adc          
         
         */
-        
+    },
+    
+    parseReferencesList : function (block, referencePattern) {
+        var references = block.split("\n");
+        references.map(
+            function (ref) {
+                var reference = [],
+                    key = "",
+                    value = "";
+
+                if (referencePattern.test(ref) === true) {
+                    reference = referencePattern.exec(ref);
+                    key = reference[1];
+                    value = reference[2];
+                    transdown.referencesDictionary[key] = value;
+                }
+            }
+        );
     },
     
     referencesDictionary : {},
