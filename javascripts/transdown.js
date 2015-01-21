@@ -38,10 +38,11 @@ var transdown = {
             episode.turns = [];
             this.episodes.push(episode);
         
-        // if it's a conversational turn, make a new turn and 
-        // add it to the new episode
+        // otherwise, if it's a reference list
         } else if (referenceLink.test(block) === true) {
             transdown.parseReferencesList(block, referenceLink);
+            
+        // otherwise, if it's speech
         } else if (speechWithTimestampAndSpeaker.test(block) === true) {
             transdown.parseSpeechWithTimestampAndSpeaker(
                 block,
@@ -60,17 +61,18 @@ var transdown = {
                 speechWithSpeaker,
                 this
             );
+        
+        // Otherwise, write it out somewhere so the user gets realtime feedback
+        } else {
+            console.log(block);
+            turn = {
+                timestamp: "",
+                speaker: "",
+                speech: block,
+                accompanyingMedia: ""
+            };
+            this.episodes[this.episodes.length - 1].turns.push(turn);
         }
-//        } else {
-//            console.log("fallthrough " + block);
-//            turn = {
-//                timestamp: "",
-//                speaker: "",
-//                speech: block,
-//                accompanyingMedia: ""
-//            };
-//            transcript.episodes[transcript.episodes.length - 1].turns.push(turn);
-//        }
     },
     
     parseSpeechWithTimestamp : function (block, pattern, transcript) {
