@@ -19,7 +19,6 @@ var transdown = {
         
         html = Handlebars.templates.transcriptTemplate(transcript);
         $('#live-preview').html(html);
-        console.log(transcript);
     },
     
     parseBlock : function (block) {
@@ -29,21 +28,27 @@ var transdown = {
             speechWithTimestamp = /\s*\[(\d\d(?::\d\d)+(?:[;.]\d\d){0,1})\]\s+(.*)/,
             episodeTitle = /^\s*#{1,6}\s*([^\s].*)/,
             referenceLink = /^\[([^\]])*\]:\s(.*)/,
-            episode = {},
+            episode,
+            emptyEpisode = {turns: [],
+                            columns: [],
+                            title: ""},
             rawTurnComponents = [],
             turn = {},
             references = [],
             latestEpisode = this.episodes[this.episodes.length - 1];
         
         // if it's an episode title or there are no episodes, make a new episode
-        if (episodeTitle.test(block) === true || this.episodes.length === 0) {
+        if ((episodeTitle.test(block) === true || this.episodes.length === 0)) {
+            episode = emptyEpisode;
             episode.title = (episodeTitle.test(block)) ? episodeTitle.exec(block)[1] : "";
             episode.columns = [];
             episode.turns = [];
-            this.episodes.push(episode);
+            this.episodes.push(episode)
+            latestEpisode = this.episodes[this.episodes.length - 1];        
+        }
         
-        // otherwise, if it's a reference list
-        } else if (referenceLink.test(block) === true) {
+        // if it's a reference list
+        if (referenceLink.test(block) === true) {
             transdown.parseReferencesList(block, referenceLink);
             this.episodehasAccompanyingMedia = true;
             
@@ -67,8 +72,9 @@ var transdown = {
                 latestEpisode
             );
         
-        // Otherwise, write it out somewhere so the user gets realtime feedback
-        } else {
+        // Otherwise, make sure it's not an episode title,
+        // then write it out somewhere so the user gets realtime feedback
+        } else if (episodeTitle.test(block) === false){
             turn = {
                 timestamp: "",
                 speaker: "",
@@ -115,7 +121,7 @@ var transdown = {
     parseBlocks : function (text) {
         "use strict";
         var blockSeparator = /\n{2,}/,
-            blocks = text.split(blockSeparator),
+            blocks = text.trim().split(blockSeparator),
             transcript = {
                 episodes : [],
                 hasSpeakerNames : false,
@@ -172,16 +178,13 @@ var transdown = {
             speechPosition = columns.indexOf("Speech");
         
         if (episode.hasTimestamps === true) {
-            console.log("has timestamp");
             columns.unshift("Time");
         }
         if (episode.hasSpeakerNames === true) {
-            console.log("has speaker names");
             speechPosition = columns.indexOf("speech");
             columns.splice(speechPosition, 0, "Speaker");
         }
         if (episode.hasAccompanyingMedia === true) {
-            console.log("has accompanying media");
             columns.push("Media");
         }
         return (
