@@ -33,13 +33,11 @@ var transdown = {
             rawTurnComponents = [],
             turn = {},
             references = [],
-            key = "",
-            latestEpisode = this.episodes[this.episodes.length - 1],
-            value = "";
+            latestEpisode = this.episodes[this.episodes.length - 1];
         
-        // if it's an episode title, make a new episode
-        if (episodeTitle.test(block) === true) {
-            episode.title = episodeTitle.exec(block)[1];
+        // if it's an episode title or there are no episodes, make a new episode
+        if (episodeTitle.test(block) === true || this.episodes.length === 0) {
+            episode.title = (episodeTitle.test(block)) ? episodeTitle.exec(block)[1] : "";
             episode.columns = [];
             episode.turns = [];
             this.episodes.push(episode);
@@ -114,7 +112,7 @@ var transdown = {
     },
             
    
-    parseBlocks : function (text, transcript) {
+    parseBlocks : function (text) {
         "use strict";
         var blockSeparator = /\n{2,}/,
             blocks = text.split(blockSeparator),
@@ -214,7 +212,7 @@ var transdown = {
         }
         return (turn);
 
-    },
+    }
     
 };
 
