@@ -26,7 +26,7 @@ var transdown = {
         var speechWithTimestampAndSpeaker = /\s*\[(\d\d(?::\d\d)+(?:[;.]\d\d){0,1})\]\s+([^:]+):\s+(.*)/,
             speechWithSpeaker = /^\s*([^:]*):\s+(.*)/,
             speechWithTimestamp = /\s*\[(\d\d(?::\d\d)+(?:[;.]\d\d){0,1})\]\s+(.*)/,
-            episodeTitle = /^\s*#{1,6}\s*([^\s].*)/,
+            episodeTitle = /^#{1,6}\s+([^\s].*)$/,
             referenceLink = /^\[([^\]])*\]:\s(.*)/,
             episode,
             emptyEpisode = {turns: [],
@@ -44,11 +44,10 @@ var transdown = {
             episode.columns = [];
             episode.turns = [];
             this.episodes.push(episode)
-            latestEpisode = this.episodes[this.episodes.length - 1];        
-        }
-        
-        // if it's a reference list
-        if (referenceLink.test(block) === true) {
+            latestEpisode = this.episodes[this.episodes.length - 1];   
+            
+        // otherwise if it's a reference list
+        } else if (referenceLink.test(block) === true) {
             transdown.parseReferencesList(block, referenceLink);
             this.episodehasAccompanyingMedia = true;
             
@@ -75,6 +74,8 @@ var transdown = {
         // Otherwise, make sure it's not an episode title,
         // then write it out somewhere so the user gets realtime feedback
         } else if (episodeTitle.test(block) === false){
+            console.log("parsing as plain text");
+            
             turn = {
                 timestamp: "",
                 speaker: "",
@@ -128,6 +129,7 @@ var transdown = {
                 hasAccompanyingMedia : false,
                 hasTimestamps : false
             };
+        console.log(blocks);
         
         
         blocks.map(transdown.parseBlock, transcript);
