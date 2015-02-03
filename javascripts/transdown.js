@@ -20,31 +20,53 @@ var transdown = {
         html = Handlebars.templates.transcriptTemplate(transcript);
         $('#live-preview').html(html);
     },
+  
+    makeNewEpisode : function (block, episodeTitlePattern) {
+        "use strict";
+        var episode = {
+                title: "",
+                columns: [],
+                turns: []
+            };
+        if (episodeTitlePattern.test(block) === true) {
+            episode.title = episodeTitlePattern.exec(block)[1];
+        }
+        return (episode);
+    },
     
-    parseBlock : function (block) {
+    parseBlock : function (block, index) {
         "use strict";
         var speechWithTimestampAndSpeaker = /\s*\[(\d\d(?::\d\d)+(?:[;.]\d\d){0,1})\]\s+([^:]+):\s+(.*)/,
             speechWithSpeaker = /^\s*([^:]*):\s+(.*)/,
             speechWithTimestamp = /\s*\[(\d\d(?::\d\d)+(?:[;.]\d\d){0,1})\]\s+(.*)/,
-            episodeTitle = /^#{1,6}\s+([^\s].*)$/,
+            episodeTitlePattern = /^#{1,6}\s+([^\s].*)$/,
             referenceLink = /^\[([^\]])*\]:\s(.*)/,
             episode,
-            emptyEpisode = {turns: [],
-                            columns: [],
-                            title: ""},
             rawTurnComponents = [],
             turn = {},
             references = [],
-            latestEpisode = this.episodes[this.episodes.length - 1];
+            latestEpisode = this.episodes[this.episodes.length - 1] || null;
+        console.log(
+            "The index is "
+                + index
+                + " and the value of the episode title test pattern is "
+                + episodeTitlePattern.test(block)
+        );
+        
+        // if the index is zero and the first block isn't an episode title, make a new episode
+        if (index === 0 && episodeTitlePattern.test(block) === false) {
+            episode = transdown.makeNewEpisode(block, episodeTitlePattern);
+            this.episodes.push(episode);
+            latestEpisode = this.episodes[0];
+            
+        }
         
         // if it's an episode title or there are no episodes, make a new episode
-        if ((episodeTitle.test(block) === true || this.episodes.length === 0)) {
-            episode = emptyEpisode;
-            episode.title = (episodeTitle.test(block)) ? episodeTitle.exec(block)[1] : "";
-            episode.columns = [];
-            episode.turns = [];
-            this.episodes.push(episode)
-            latestEpisode = this.episodes[this.episodes.length - 1];   
+        if (episodeTitlePattern.test(block) === true) {
+            console.log("episode title branch");
+            
+            episode = transdown.makeNewEpisode(block, episodeTitlePattern);
+            this.episodes.push(episode);
             
         // otherwise if it's a reference list
         } else if (referenceLink.test(block) === true) {
@@ -73,17 +95,16 @@ var transdown = {
         
         // Otherwise, make sure it's not an episode title,
         // then write it out somewhere so the user gets realtime feedback
-        } else if (episodeTitle.test(block) === false){
-            console.log("parsing as plain text");
-            
+        } else if (episodeTitlePattern.test(block) === false) {
             turn = {
                 timestamp: "",
                 speaker: "",
                 speech: block,
                 accompanyingMedia: ""
             };
-            this.episodes[this.episodes.length - 1].turns.push(turn);
+            latestEpisode.turns.push(turn);
         }
+        latestEpisode = this.episodes[this.episodes.length - 1];
     },
     
     parseSpeechWithTimestamp : function (block, pattern, episode) {
@@ -129,26 +150,31 @@ var transdown = {
                 hasAccompanyingMedia : false,
                 hasTimestamps : false
             };
-        console.log(blocks);
         
         
         blocks.map(transdown.parseBlock, transcript);
+        console.log(transcript);
         return (transcript);
         /*
         
         To parseBlocks:
            + separate the text into blocks
            + Create a new transcript object
-           + process each block
+           + process blocks
                 
-        To process a block (by handing in a transcript object):
-            If (it's an episode title):
-                Create a new episode with that as the title
-                Append the episode to the end of the episodes array
-            Else If (it's a turn):
-                Create a new conversationalTurn object
-                Get the last episode
-                Append the turn to the array of turns in the last episode
+        To process blocks:
+           + process the first block
+           + process the rest of the blocks
+           
+        To process the first block:
+           + if it's an episode title,
+              + create a new episode with that as the title and push it onto the array
+           + else,
+              + create a new episode
+              
+           Implemented as
+           
+           episode.title = titlepattern.exec(block) || ""
         
         See also: https://gist.github.com/briandk/e561fc59e81eaebd2adc          
         
