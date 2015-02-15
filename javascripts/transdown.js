@@ -1,5 +1,5 @@
 var transdown = {
-    transdownify : function (text, template) {
+    transdownify : function (text) {
         "use strict";
         var transcript = transdown.parseBlocks(text),
             html = "";
@@ -16,8 +16,7 @@ var transdown = {
             transcript
         );
         
-        html = template(transcript);
-        return (html);
+        return (transcript);
     },
   
     makeNewEpisode : function (block, episodeTitlePattern) {
@@ -237,4 +236,27 @@ var transdown = {
     }
     
 };
+
+// boilerplate for exporting Node module
+
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define([], factory);
+    } else if (typeof exports === 'object') {
+        // Node. Does not work with strict CommonJS, but
+        // only CommonJS-like environments that support module.exports,
+        // like Node.
+        module.exports = factory();
+    } else {
+        // Browser globals (root is window)
+        root.returnExports = factory();
+  }
+}(this, function () {
+
+    // Just return a value to define the module export.
+    // This example returns an object, but the module
+    // can return a function as the exported value.
+    return transdown;
+}));
 
