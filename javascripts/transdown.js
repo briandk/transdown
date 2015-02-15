@@ -1,9 +1,8 @@
 var transdown = {
-    transdownify : function () {
+    transdownify : function (text) {
         "use strict";
-        var transcript = transdown.parseBlocks($(this).val()),
-            html = "",
-            output;
+        var transcript = transdown.parseBlocks(text),
+            html = "";
         
         transcript.episodes.forEach(
             function (element, index) {
@@ -18,7 +17,7 @@ var transdown = {
         );
         
         html = Handlebars.templates.transcriptTemplate(transcript);
-        $('#live-preview').html(html);
+        return (html);
     },
   
     makeNewEpisode : function (block, episodeTitlePattern) {
@@ -247,6 +246,3 @@ var transdown = {
     
 };
 
-var text = $('#text-to-transdownify');
-text.each(transdown.transdownify);
-text.first().keyup(transdown.transdownify);
