@@ -1,5 +1,5 @@
 var transdown = {
-    transdownify : function (text) {
+    transdownify : function (text, template) {
         "use strict";
         var transcript = transdown.parseBlocks(text),
             html = "";
@@ -16,7 +16,7 @@ var transdown = {
             transcript
         );
         
-        html = Handlebars.templates.transcriptTemplate(transcript);
+        html = template(transcript);
         return (html);
     },
   

@@ -1,7 +1,10 @@
 handleLivePreview = function () {
     "use strict";
     var text = $('#text-to-transdownify'),
-        html = transdown.transdownify(text.val());
+        html = transdown.transdownify(
+            text.val(),
+            Handlebars.templates.transcriptTemplate
+        );
     $('#live-preview').html(html);
 };
 
