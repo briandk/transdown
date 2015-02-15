@@ -1,9 +1,8 @@
 var transdown = {
-    transdownify : function () {
+    transdownify : function (text) {
         "use strict";
-        var transcript = transdown.parseBlocks($(this).val()),
-            html = "",
-            output;
+        var transcript = transdown.parseBlocks(text),
+            html = "";
         
         transcript.episodes.forEach(
             function (element, index) {
@@ -18,7 +17,7 @@ var transdown = {
         );
         
         html = Handlebars.templates.transcriptTemplate(transcript);
-        $('#live-preview').html(html);
+        return (html);
     },
   
     makeNewEpisode : function (block, episodeTitlePattern) {
@@ -46,12 +45,6 @@ var transdown = {
             turn = {},
             references = [],
             latestEpisode = this.episodes[this.episodes.length - 1] || null;
-        console.log(
-            "The index is "
-                + index
-                + " and the value of the episode title test pattern is "
-                + episodeTitlePattern.test(block)
-        );
         
         // if the index is zero and the first block isn't an episode title, make a new episode
         if (index === 0 && episodeTitlePattern.test(block) === false) {
@@ -63,7 +56,6 @@ var transdown = {
         
         // if it's an episode title or there are no episodes, make a new episode
         if (episodeTitlePattern.test(block) === true) {
-            console.log("episode title branch");
             
             episode = transdown.makeNewEpisode(block, episodeTitlePattern);
             this.episodes.push(episode);
@@ -153,7 +145,6 @@ var transdown = {
         
         
         blocks.map(transdown.parseBlock, transcript);
-        console.log(transcript);
         return (transcript);
         /*
         
@@ -247,6 +238,3 @@ var transdown = {
     
 };
 
-var text = $('#text-to-transdownify');
-text.each(transdown.transdownify);
-text.first().keyup(transdown.transdownify);
