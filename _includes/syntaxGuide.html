@@ -1,30 +1,3 @@
-<h1 class="page-header">Philosophy <small>Why Transdown Syntax looks like it does</small></h1>
-
-	<p>
-	  My two main inspirations for Transdown were John Gruber&#8217;s <a href="http://daringfireball.net/markdown">Markdown</a> and John August&#8217;s <a href="http://fountain.io">Fountain</a>. The inspirational lineage is so strong that I chose the name <strong>Transdown</strong> to reflect that heritage. And, much of the syntax descends from their ideas about what these languages are and how they should work.
-	</p>
-
-	<blockquote>
-	  <p>
-	    The overriding design goal for Markdown’s formatting syntax is to make it as readable as possible. The idea is that a Markdown-formatted document should be publishable as-is, as plain text, without looking like it’s been marked up with tags or formatting instructions. 
-	  </p>
-	  <footer>John Gruber in 
-	    <a href="http://daringfireball.net/projects/markdown/">
-	      <cite title="Introduction to Markdown">Introduction to Markdown</cite>
-	    </a>
-	  </footer>
-	</blockquote>
-
-	<blockquote>
-	  <p>
-	    Fountain is not an app. It’s not even really a file format. It’s a simple set of straightforward <a href="http://fountain.io/syntax">rules</a> for writing a screenplay in plain text….Fountain is designed to “just work” if you simply typed some text that looked like a screenplay.
-	  </p>
-	  <footer>John August in 
-	    <a href="http://fountain.io/faq">
-	      <cite title="Fountain FAQ">Fountain FAQ</cite>
-	    </a>
-	  </footer>
-	</blockquote>
 <h1 class="page-header">A Quick Example</h1>
 
 <p>Let&#8217;s examine a snippet of raw transcript from <a href="http://hdl.handle.net/1903/15177">my dissertation</a>. This kind of example could be straight out of an <a href="http://www.inqscribe.com/">Inqscribe</a> file you&#8217;re currently working on.</p>
@@ -73,5 +46,53 @@ Are separated by a blank line</code></pre>
 have no blank line in between</code></pre>
 
         <h1 class="page-header">Episodes</h1>
+            <table class="table">
+  <thead>
+    <tr>
+      <th>Examples</th>
+      <th>Explanation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+          <pre>### Students React to Kumail's Story About Evaporation</pre>
+          <pre>### Ms. Jackson Discusses Meiosis</pre>
+          <pre>### Episode IV: A New Hope</pre>
+      </td>
+      <td>
+          <p>Transcripts are organized around episodes. You can denote the title of an episode using <a href="http://spec.commonmark.org/0.17/#atx-headers">ATX-style header syntax</a>, which just means beginning a line with one or more <code>#</code> symbols.</p> 
+      </td>
+        </tr>
+      </tbody>
+    </table>
 
-        <p>Transcripts are organized around episodes. You can denote the title of an episode using <a href="http://spec.commonmark.org/0.17/#atx-headers">ATX-style header syntax</a>, which just means beginning a line </p>
+
+
+<h1 class="page-header">Philosophy <small>Why Transdown Syntax looks like it does</small></h1>
+
+	<p>
+	  My two main inspirations for Transdown were John Gruber&#8217;s <a href="http://daringfireball.net/markdown">Markdown</a> and John August&#8217;s <a href="http://fountain.io">Fountain</a>. The inspirational lineage is so strong that I chose the name <strong>Transdown</strong> to reflect that heritage. And, much of the syntax descends from their ideas about what these languages are and how they should work.
+	</p>
+
+	<blockquote>
+	  <p>
+	    The overriding design goal for Markdown’s formatting syntax is to make it as readable as possible. The idea is that a Markdown-formatted document should be publishable as-is, as plain text, without looking like it’s been marked up with tags or formatting instructions. 
+	  </p>
+	  <footer>John Gruber in 
+	    <a href="http://daringfireball.net/projects/markdown/">
+	      <cite title="Introduction to Markdown">Introduction to Markdown</cite>
+	    </a>
+	  </footer>
+	</blockquote>
+
+	<blockquote>
+	  <p>
+	    Fountain is not an app. It’s not even really a file format. It’s a simple set of straightforward <a href="http://fountain.io/syntax">rules</a> for writing a screenplay in plain text….Fountain is designed to “just work” if you simply typed some text that looked like a screenplay.
+	  </p>
+	  <footer>John August in 
+	    <a href="http://fountain.io/faq">
+	      <cite title="Fountain FAQ">Fountain FAQ</cite>
+	    </a>
+	  </footer>
+	</blockquote>
