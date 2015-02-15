@@ -11,3 +11,6 @@ handleLivePreview();
 $('#text-to-transdownify')
     .first()
     .keyup(handleLivePreview);
+
+// Enable Popovers (like for the syntax cheat sheet)
+$('[data-toggle="popover"]').popover();
