@@ -1,6 +1,6 @@
 <h1 class="page-header">A Quick Example</h1>
 
-<p>Let&#8217;s examine a snippet of raw transcript from <a href="http://hdl.handle.net/1903/15177">my dissertation</a>. This kind of example could be straight out of an <a href="http://www.inqscribe.com/">Inqscribe</a> file you&#8217;re currently working on.</p>
+<p>Let&#8217;s examine a snippet of raw transcript from <a href="http://hdl.handle.net/1903/15177">my dissertation</a>. This kind of example could be straight out of an <a href="http://www.inqscribe.com/">Inqscribe</a> file you&#8217;re currently working on. I'll show how Transdown recognizes its overall structure, then below we dig into how to format your own transcripts.</p>
 <table class="table">
   <thead>
     <tr>
@@ -49,7 +49,7 @@ have no blank line in between</code></pre>
 <table class="table">
   <thead>
     <tr>
-      <th>Examples</th>
+      <th>Examples of Valid Episode Titles</th>
       <th>Explanation</th>
     </tr>
   </thead>
@@ -62,6 +62,45 @@ have no blank line in between</code></pre>
       </td>
       <td>
         <p>Transcripts are organized around episodes. You can denote the title of an episode using <a href="http://spec.commonmark.org/0.17/#atx-headers">ATX-style header syntax</a>, which just means beginning a line with one or more <code>#</code> symbols.</p> 
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 class="page-header">Conversational Turns</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Examples of Valid Turns</th>
+      <th>Explanation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <pre>[36:17] Jazmyn: I think it falls faster because 
+it has more mass for gravity to pull.</pre>
+      </td>
+      <td>
+        <p>This turn showcases all the possible markup a turn can have. It's got a <strong>timestamp</strong> (<code>[36:17]</code>), a <strong>speaker-name</strong> (<code>Jazmyn</code>), and speech. To write turns like this, lead the line with your timestamp (in square brackets), followed by your speaker name, followed by a colon, followed by speech.
+      </td>
+    </tr>    
+    <tr>
+      <td>
+        <pre>[00:17] Students discuss James A. Garfield's 
+novel proof of the Pythagorean Theorem.</pre>
+      </td>
+      <td>
+        <p>Turns don't require a speaker to be named. In this example, we lead a line with a <strong>timestamp</strong>, which is a <code>[</code>, followed by strings of colon-separated (<code>00:17</code>), followed by <code>]</code>, followed by a space. 
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <pre>Vader: You are part of the Rebel Alliance 
+and a traitor. Take her away!</pre>
+      </td>
+      <td>
+        <p>Turns also don't require a timestamp, as long as a speaker is defined. This turn parses as a <strong>speaker name</strong> (everything up to the <code>:</code> character), followed by <strong>speech</strong></p> 
       </td>
     </tr>
   </tbody>
