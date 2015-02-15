@@ -38,15 +38,20 @@ List of References to Media</pre>
     </table>
     <h1 class="page-header">Transdown&#8217;s Block Structure</h1>
 
-    <p>Transdown assumes your transcript will be built of blocks, which are just lines of source text separated by one or more blank lines.</p>
-    <pre><code class="(null)">These two lines
+    <p class="lead">Transdown assumes your transcript will be built of blocks, which are just lines of source text separated by one or more blank lines.</p>
 
-Are separated by a blank line</code></pre>
-      <pre><code class="(null)">These two lines
-have no blank line in between</code></pre>
+    <p>Episode titles, turns, and reference lists are all block-level elements. To write in transdown, you should separate those elements (<em>especially turns</em>) from one other with one or more blank lines</p>
+    <pre>These three lines
 
-<h1 class="page-header">Episodes</h1>
-<table class="table">
+Are each separated by a blank line
+
+So each line is a block</pre>
+      <pre><code class="(null)">These three lines
+have no blank line in between
+and they're all part of the same single block</code></pre>
+
+<h1 class="page-header">Episode Titles</h1>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Examples of Valid Episode Titles</th>
@@ -68,7 +73,10 @@ have no blank line in between</code></pre>
 </table>
 
 <h1 class="page-header">Conversational Turns</h1>
-<table class="table">
+
+<p>Conversational Turns are the meat and potatoes of most transcripts. And, when it comes to recognizing what you type, Transdown tries to be really both smart and flexible. The result is that whether you're transcribing with timestamps down to the frame-number, or you're just content-logging and you don't care who's speaking, Transdown just <em>gets it right</em>.
+
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Examples of Valid Turns</th>
@@ -82,7 +90,7 @@ have no blank line in between</code></pre>
 it has more mass for gravity to pull.</pre>
       </td>
       <td>
-        <p>This turn showcases all the possible markup a turn can have. It's got a <strong>timestamp</strong> (<code>[36:17]</code>), a <strong>speaker-name</strong> (<code>Jazmyn</code>), and speech. To write turns like this, lead the line with your timestamp (in square brackets), followed by your speaker name, followed by a colon, followed by speech.
+        <p>This turn showcases all the possible markup a turn can have. It's got a <strong>timestamp</strong> followed by a space (<code>[36:17] </code>), a <strong>speaker-name</strong> followed by a colon and a space (<code>Jazmyn: </code>), and speech. To write turns like this, lead the line with your timestamp (in square brackets), followed by your speaker name, followed by a colon, followed by speech.
       </td>
     </tr>    
     <tr>
@@ -91,7 +99,7 @@ it has more mass for gravity to pull.</pre>
 novel proof of the Pythagorean Theorem.</pre>
       </td>
       <td>
-        <p>Turns don't require a speaker to be named. In this example, we lead a line with a <strong>timestamp</strong>, which is a <code>[</code>, followed by strings of colon-separated (<code>00:17</code>), followed by <code>]</code>, followed by a space. 
+        <p>Turns don't require a speaker to be named. In this example, we lead a line with a <strong>timestamp</strong>, which is a <code>[</code>, followed by strings of colon-separated (<code>00:17</code>), followed by <code>]</code>, followed by a space. <em>Using timestamps without speaker-names is a perfect use case for content logging.</em>
       </td>
     </tr>
     <tr>
