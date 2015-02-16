@@ -15,8 +15,12 @@ var template = Handlebars.compile(
     )
 );
 
-var processInputFromInqscribe = function (text) {
+var processInputFromInqscribe = function (text, pattern) {
     "use strict";
+    text = text.replace(pattern, "");
+    text = text.replace(/\\r/g, "\n");
+    text = transdown.transdownify(text);
+    text = template(text);
     return (text);
 };
 
@@ -28,10 +32,14 @@ var rl = readline.createInterface({
 });
 
 rl.on('line', function (line) {
-    var inqscribeTranscriptDataPattern = /^text=(.*)/;
+    var inqscribeTranscriptDataPattern = /^text=/;
     
     if (inqscribeTranscriptDataPattern.test(line) === true) {
-        processInputFromInqscribe(line);
-        console.log("LINE " + line);
+        console.log(
+            processInputFromInqscribe(
+                line,
+                inqscribeTranscriptDataPattern
+            )
+        );
     }
 });
