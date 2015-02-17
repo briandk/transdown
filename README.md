@@ -1,8 +1,8 @@
-### What is Transdown?
+# What is Transdown?
 
 [Transdown][1] is a lightweight syntax for writing and presenting transcripts of qualitative research data.
 
-### What does it look like in action?
+# What does it look like in action?
 
 Transdown lets you write raw transcript like this:
 
@@ -55,7 +55,7 @@ and have it automatically rendered as a beautiful table like this:
 </tbody>
 </table>
 
-### Where can I find out more info?
+# Where can I find out more info?
 
 Visit [Transdown.org][1]
 
