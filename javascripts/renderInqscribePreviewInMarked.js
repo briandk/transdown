@@ -1,26 +1,16 @@
-// Directory variables
-var pathToTemplate = '/Users/briandanielak/Dropbox/dev/transdown/transcriptTemplate.handlebars';
-
 // load modules
-var Handlebars = require('handlebars');
-var fs = require('fs');
 var transdown = require('./transdown.js');
 var readline = require('readline');
+var Handlebars = require('handlebars');
+require('./template-node.js');
 
-// compile template
-var template = Handlebars.compile(
-    fs.readFileSync(
-        pathToTemplate,
-        encoding = 'utf8'
-    )
-);
 
 var processInputFromInqscribe = function (text, pattern) {
     "use strict";
     text = text.replace(pattern, "");
     text = text.replace(/\\r/g, "\n");
     text = transdown.transdownify(text);
-    text = template(text);
+    text = Handlebars.templates.transcriptTemplate(text);
     return (text);
 };
 
@@ -31,15 +21,16 @@ var rl = readline.createInterface({
     output: process.stdout
 });
 
+
 rl.on('line', function (line) {
-    var inqscribeTranscriptDataPattern = /^text=/;
-    
-    if (inqscribeTranscriptDataPattern.test(line) === true) {
-        console.log(
-            processInputFromInqscribe(
-                line,
-                inqscribeTranscriptDataPattern
-            )
-        );
-    }
+   var inqscribeTranscriptDataPattern = /^text=/;
+
+   if (inqscribeTranscriptDataPattern.test(line) === true) {
+       console.log(
+           processInputFromInqscribe(
+               line,
+               inqscribeTranscriptDataPattern
+           )
+       );
+   }
 });
