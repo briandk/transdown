@@ -106,6 +106,7 @@ There are several main parts to installing Transdown for Inqscribe/Marked integr
 	1. [Download the source files][11] directly as a .ZIP file, which you should unzip.[^f]
 	2. [Clone the Transdown Repository][10] using the free [Github for Mac app][9].[^f]
 	3. Clone the repository at the command line using [git][12]:
+		
 		```bash
 		# First, navigate to a directory where you want to store
 		# the Transdown folder, then
@@ -135,11 +136,11 @@ There are several main parts to installing Transdown for Inqscribe/Marked integr
 		3. Click and drag `renderInqscribePreviewinMarked.js` from the Finder window directly into the field for `Args` in Inqscribe ![Dragging the rendering script into the Args field of Marked Preferences](http://f.cl.ly/items/0E3a3c43392R0m2i3J0F/Screenshot_2_19_15__9_33_PM.png)
 		4. Click “Apply”
 5. Verifying your installation
-		1. Open a transcript in Inqscribe. If you don’t have one ready to go, you can open your Transdown directory and navigate to `MarkedAppDemo -> RebeccaWellsFrameShiftEpisode20120406.inqscr`.
-		2. Open Marked
-		3. Click the Inqscribe icon in the window’s title bar and drag it over the Marked icon in the dock. ![Clicking and dragging the inqscribe icon onto Marked](http://f.cl.ly/items/1j0A2A1V1k112R301N2L/Screenshot_2_19_15__9_38_PM.png)
-		4. In Marked, click the Style selector in the lower-left corner of the window. Select `TransdownMarkedPreview`.
-		5. That should do it. If you’re still experiencing difficulties or issues, contact me!
+	1. Open a transcript in Inqscribe. If you don’t have one ready to go, you can open your Transdown directory and navigate to `MarkedAppDemo -> RebeccaWellsFrameShiftEpisode20120406.inqscr`.
+	2. Open Marked
+	3. Click the Inqscribe icon in the window’s title bar and drag it over the Marked icon in the dock. ![Clicking and dragging the inqscribe icon onto Marked](http://f.cl.ly/items/1j0A2A1V1k112R301N2L/Screenshot_2_19_15__9_38_PM.png)
+	4. In Marked, click the Style selector in the lower-left corner of the window. Select `TransdownMarkedPreview`.
+	5. That should do it. If you’re still experiencing difficulties or issues, contact me!
 
 
 # Where can I find out more info?
