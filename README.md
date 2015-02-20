@@ -83,9 +83,25 @@ You should install Transdown if you:
 - Want to pioneer this
 - Could help by submitting bug reports [as new issues][3] when stuff goes awry[^e]
 
+## Installation Overview
+
+There are several main parts to installing Transdown for Inqscribe/Marked integration:
+
+1. Installing [Node][8],
+2. Downloading the Transdown Source Code
+3. Adding the Transdown stylesheet to Marked
+4. Setting up Marked to use Transdown as a custom processor
+5. Verifying everything works by loading a transcript
+
 ## How To Install Transdown on Mac OS X
 
-1. If you don’t already have it, install [Node][8].[^g] 
+1. If you don’t already have it, install [Node][8].[^g] There are two basic ways you can do it:
+	1. **For Developers and the Adventurous**: using [`homebrew`](http://brew.sh/)[^h] at the terminal:
+		```bash
+		> brew install node
+		```
+
+	2. **For Most Folks**: Downloading a precompiled package directly from [Nodejs.org][8]. [![Installing from Nodejs.org](http://f.cl.ly/items/1E1X1F0q1y0I2C0W2a3f/Node_js.png)][8]
 2. Download the latest version of the [Transdown source code][13] *and remember where you put it*.[^f] You can accomplish this one of three ways:
 	1. [Download the source files][11] directly as a .ZIP file, which you should unzip.[^f]
 	2. [Clone the Transdown Repository][10] using the free [Github for Mac app][9].[^f]
@@ -95,7 +111,36 @@ You should install Transdown if you:
 		# the Transdown folder, then
 		> git clone https://github.com/briandk/transdown.git
 		```
-3. Remember 
+
+3. Add the custom stylesheet to Marked. 
+	1. Open the Marked App
+	2. Click the `Marked 2` menu, then choose `Preferences`
+	3. Within `Preferences`, hit the `Style` button ![Selecting the Style Button in Marked Preferences](http://f.cl.ly/items/2a0I2j1e2Z2d023s2z23/Style.png)
+	4. Under `Theme -> Custom Styles`, Click the + button. ![Clicking the + button to add a custom style in Marked Preferences](http://f.cl.ly/items/2K1j2w0W3T1Y3f320i29/Style.png)
+	5. Within your copy of Transdown, navigate to `stylesheets -> markedApp -> transdownMarkedPreview.css`. Click to select it, then hit the Select button. ![Selecting the Transdown Marked Preview Stylesheet in Marked](http://f.cl.ly/items/0G3E3Y1n061Q2M45332u/Open.png)
+	6. Click “Apply”. 
+4. Specify Transdown as a Custom Processor
+	 1. Open the Marked App (if it’s not already still open)
+	 2. Click the `Marked 2` menu, then choose `Preferences`
+	 3. Within `Preferences`, hit the `Advanced` Button. ![Clicking the Advanced Button in Marked Preferences.](http://f.cl.ly/items/2U2U2t1Z0k1L2R3A1s3p/Advanced.png)
+	 4. Check the “Enable Custom Processor” box
+	 5. For the value of `Path`, enter:
+		```
+		/usr/local/bin/node
+		```
+
+	 6. For the value of `Args`, you’ll need to put the full path to your local copy of the rendering script:  `renderInqscribePreviewinMarked.js`. Here’s an easy way to do that.
+		1. Use Finder to bring up where you saved Transdown
+		2. Within Transdown, navigate to `javascripts`
+		3. Click and drag `renderInqscribePreviewinMarked.js` from the Finder window directly into the field for `Args` in Inqscribe ![Dragging the rendering script into the Args field of Marked Preferences](http://f.cl.ly/items/0E3a3c43392R0m2i3J0F/Screenshot_2_19_15__9_33_PM.png)
+		4. Click “Apply”
+5. Verifying your installation
+		1. Open a transcript in Inqscribe. If you don’t have one ready to go, you can open your Transdown directory and navigate to `MarkedAppDemo -> RebeccaWellsFrameShiftEpisode20120406.inqscr`.
+		2. Open Marked
+		3. Click the Inqscribe icon in the window’s title bar and drag it over the Marked icon in the dock. ![Clicking and dragging the inqscribe icon onto Marked](http://f.cl.ly/items/1j0A2A1V1k112R301N2L/Screenshot_2_19_15__9_38_PM.png)
+		4. In Marked, click the Style selector in the lower-left corner of the window. Select `TransdownMarkedPreview`.
+		5. That should do it. If you’re still experiencing difficulties or issues, contact me!
+
 
 # Where can I find out more info?
 
@@ -122,3 +167,4 @@ Visit [Transdown.org][1]
 [^e]: In all seriousness, submitting bug reports helps me and the community make Transdown better.
 [^f]: It’s really important that you remember where you download the Transdown source files because you’ll need that information for a later step, when you tell Marked where to look for your custom processor.
 [^g]: Unless you do web development work on the regular, you probably don’t have Node. *But that’s OK!* It’s free and open-source. And if you’re curious, the reason you need it is that currently Node helps me handle the inter-app communication between Inqscribe and the live preview in [Marked][5]
+[^h]: If you’re not sure what [Homebrew](http://brew.sh/) is and you don’t feel comfortable installing it, just install Node from [Nodejs.org][8] instead
