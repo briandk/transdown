@@ -57,7 +57,7 @@ and have it automatically rendered as a beautiful table like this:
 </tbody>
 </table>
 
-# How can I install Transdown on my system?
+# How can I install Transdown on my system? [installation-instructions]
 
 Right now Transdown is ***Mac-Only***.[^a] If you have a Mac and want to give it a try, read on.
 
