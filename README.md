@@ -1,8 +1,10 @@
-### What is Transdown?
+# What is Transdown?
 
 [Transdown][1] is a lightweight syntax for writing and presenting transcripts of qualitative research data.
 
-### What does it look like in action?
+Right now, Transdown also lets you [live preview and export your transcript][7] as you work on it in [Inqscribe][4]. 
+
+# What does it look like in action?
 
 Transdown lets you write raw transcript like this:
 
@@ -55,8 +57,26 @@ and have it automatically rendered as a beautiful table like this:
 </tbody>
 </table>
 
-### Where can I find out more info?
+# How can I install Transdown on my system?
+
+See the [installation instructions][14] on Transdown.org
+
+# Where can I find out more info?
 
 Visit [Transdown.org][1]
 
 [1]: http://transdown.org
+[2]: http://en.wikipedia.org/wiki/TRS-80
+[3]: https://github.com/briandk/transdown/issues
+[4]: http://www.inqscribe.com/
+[5]: http://marked2app.com/
+[6]: http://www.apple.com/osx/
+[7]: http://transdown.org/videos.html
+[8]: http://nodejs.org
+[9]: https://mac.github.com/
+[10]: github-mac://openRepo/https://github.com/briandk/transdown
+[11]: https://github.com/briandk/transdown/archive/master.zip
+[12]: http://git-scm.com/
+[13]: https://github.com/briandk/transdown
+[14]: http://transdown.org/install.html
+

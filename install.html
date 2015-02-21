@@ -1,0 +1,16 @@
+---
+layout: default
+---
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      {% capture install %}{% include install.md %}{% endcapture %}
+        {{ install | markdownify }}
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+</div>
+<script>
+</script>
