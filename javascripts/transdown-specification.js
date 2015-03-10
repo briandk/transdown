@@ -27,7 +27,13 @@ var turn = {
     timestamp: "",
     speakerName: "",
     speech: "",
-    accompanyingMedia: ""
+    hasAccompanyingMedia: false,
+    accompanyingMedia: []
+};
+
+var media = {
+  source: "",
+  type: ""
 };
 
 var getTestTranscript = function () {
