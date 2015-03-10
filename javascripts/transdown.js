@@ -233,7 +233,16 @@ var transdown = {
         }
         return (turn);
 
-    }
+    },
+    
+    // TO Process Links
+        // Add reference links to media array
+        // Add inline links to media array
+        // Sort media array
+                       
+        
+        
+            
     
 };
 
@@ -251,7 +260,7 @@ var transdown = {
     } else {
         // Browser globals (root is window)
         root.returnExports = factory();
-  }
+    }
 }(this, function () {
 
     // Just return a value to define the module export.
