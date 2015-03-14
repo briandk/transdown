@@ -1,7 +1,6 @@
   {{#each episodes}}
   <table class="table
-                table-hover
-                transdown-output">
+                table-hover">
     <thead>
       <tr>
         <th class="episode-title" colspan="{{numberOfColumns}}">{{title}}</th>
@@ -20,8 +19,17 @@
             <td class="speaker-name">{{speakerName}}</td>
             <td class="speech">{{speech}}</td>
             <td>
-              <img src="{{accompanyingMedia}}"
-                     class="accompanying-media"></td>
+              <div>
+              {{#if hasAccompanyingMedia}}
+                {{#accompanyingMedia}}
+                <img src="{{source}}"
+                     class="accompanying-media
+                            img-responsive"
+                     alt="{{altText}}">
+                {{/accompanyingMedia}}
+              {{/if}}
+              </div>
+            </td>
           </tr>
         {{/turns}}
     </tbody>
