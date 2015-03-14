@@ -216,8 +216,8 @@ var transdown = {
     },
     
     processLinks : function (turn) {
-        var referenceLinkPattern = /(!\[[^\]]*\])\[([^\]])*\]/g,
-            inlineLinkPattern = /(!\[[^\]]*\])\(([^\)]*)\)/g,
+        var referenceLinkPattern = /!\[([^\]]*)\]\[([^\]])*\]/g,
+            inlineLinkPattern = /!\[([^\]]*)\]\(([^\)]*)\)/g,
             speech = turn.speech,
             media = [],
             medium = {},
