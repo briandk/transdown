@@ -35,17 +35,9 @@ layout: default
         class="btn btn-lg btn-primary" 
         data-toggle="popover" 
         data-title="Transdown Syntax Cheat Sheet"
-        data-placement="auto"
+        data-placement="top"
         data-html="true" 
-        data-content='
-        <dl>
-          <dt>Episode Titles</dt>
-          <dd><pre>### Episode IV</pre></dd>
-          <dt>Conversational Turns</dt>
-          <dd><pre>[00:19] inaudible</pre>
-              <pre>R2D2: Bleep Bloop</pre>
-              <pre>[19:33] Sheldon: Bazinga!</pre>
-        </dl>'>
+        data-content='{% include cheat-sheet.html %}'>
         Toggle Syntax Cheat Sheet</button>
           </form>
         </div>
