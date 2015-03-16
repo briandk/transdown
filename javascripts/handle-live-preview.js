@@ -1,4 +1,4 @@
-handleLivePreview = function () {
+var handleLivePreview = function () {
     "use strict";
     var text = $('#text-to-transdownify'),
         transcript = transdown.transdownify(text.val()),

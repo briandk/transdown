@@ -10,8 +10,6 @@ var transdown = {
                     transdown.processLinks,
                     element
                 );
-                element.columns =  transdown.getColumnNames(element);
-                element.numberOfColumns = element.columns.length;
             },
             transcript
         );
@@ -23,7 +21,6 @@ var transdown = {
         "use strict";
         var episode = {
                 title: "",
-                columns: [],
                 turns: []
             };
         if (episodeTitlePattern.test(block) === true) {
@@ -34,9 +31,9 @@ var transdown = {
     
     parseBlock : function (block, index) {
         "use strict";
-        var speechWithTimestampAndSpeaker = /\s*\[(\d\d(?::\d\d)+(?:[;.]\d\d){0,1})\]\s+([^:]+):\s+(.*)/,
+        var speechWithTimestampAndSpeaker = /\s*\[([\d:;.,]+)\]\s+([^:]+):\s+(.*)/,
             speechWithSpeaker = /^\s*([^:]*):\s+(.*)/,
-            speechWithTimestamp = /\s*\[(\d\d(?::\d\d)+(?:[;.]\d\d){0,1})\]\s+(.*)/,
+            speechWithTimestamp = /\s*\[([\d:;.,]+)\]\s+(.*)/,
             episodeTitlePattern = /^#{1,6}\s+([^\s].*)$/,
             referenceLink = /^\[([^\]])*\]:\s(.*)/,
             episode,
@@ -145,30 +142,6 @@ var transdown = {
         
         blocks.map(transdown.parseBlock, transcript);
         return (transcript);
-        /*
-        
-        To parseBlocks:
-           + separate the text into blocks
-           + Create a new transcript object
-           + process blocks
-                
-        To process blocks:
-           + process the first block
-           + process the rest of the blocks
-           
-        To process the first block:
-           + if it's an episode title,
-              + create a new episode with that as the title and push it onto the array
-           + else,
-              + create a new episode
-              
-           Implemented as
-           
-           episode.title = titlepattern.exec(block) || ""
-        
-        See also: https://gist.github.com/briandk/e561fc59e81eaebd2adc          
-        
-        */
     },
     
     parseReferencesList : function (block, referencePattern) {
@@ -191,50 +164,78 @@ var transdown = {
     
     referencesDictionary : {},
     
-    getColumnNames : function (episode) {
-        var columns = ["Speech"],
-            speechPosition = columns.indexOf("Speech");
-        
-        if (episode.hasTimestamps === true) {
-            columns.unshift("Time");
+    processLinks : function (turn) {
+        var referenceLinkPattern = /!\[([^\]]*)\]\[([^\]])*\]/g,
+            inlineLinkPattern = /!\[([^\]]*)\]\(([^\)]*)\)/g,
+            speech = turn.speech,
+            media = [],
+            medium = {},
+            link,
+            key;
+        while ((link = referenceLinkPattern.exec(speech)) !== null) {
+            medium = {
+                altText: link[1],
+                source: transdown.referencesDictionary[link[2]],
+                type: "",
+                positionInText: referenceLinkPattern.lastIndex
+            };
+            media.push(medium);
         }
-        if (episode.hasSpeakerNames === true) {
-            speechPosition = columns.indexOf("speech");
-            columns.splice(speechPosition, 0, "Speaker");
+        while ((link = inlineLinkPattern.exec(speech)) !== null) {
+            medium = {
+                altText: link[1],
+                source: link[2],
+                type: "",
+                positionInText: inlineLinkPattern.lastIndex
+            };
+            media.push(medium);
         }
-        if (episode.hasAccompanyingMedia === true) {
-            columns.push("Media");
-        }
-        return (
-            [
-                "Time",
-                "Speaker",
-                "Speech",
-                "Media"
-            ]
+        turn.accompanyingMedia = media;
+        turn.hasAccompanyingMedia = true;
+        turn.accompanyingMedia
+            .sort(
+                function (a, b) {
+                    return (a.positionInText - b.positionInText);
+                }
         );
+            
+        
+        return (turn);
     },
     
-    processLinks : function (turn) {
-        var referenceLinkPattern = /(!\[[^\]]*\])\[([^\]])*\]/,
-            inlineLinkPattern = /(!\[[^\]]*\])\[([^\]])*\]/,
-            key = "",
-            speech = turn.speech;
-        
-        turn.accompanyingMedia = "";
-        
-        if (referenceLinkPattern.test(speech) === true) {
-            key = referenceLinkPattern.exec(speech)[2];
-            turn.accompanyingMedia = transdown.referencesDictionary[key];
-            this.hasAccompanyingMedia = true;
-        } else if (inlineLinkPattern.test(speech) === true) {
-            turn.accompanyingMedia = inlineLinkPattern.exec(speech)[2];
-            this.hasAccompanyingMedia = true;
-        }
-        return (turn);
-
-    }
+    // TO Process Links
+        // Add reference links to media array
+        // Add inline links to media array
+        // Sort media array
     
+    getTestTranscript : function () {
+        var turns = [
+                {
+                    timestamp: "33:33",
+                    speakerName: "Rebecca",
+                    speech: "and then my thinking at least, is you should be able to, um, say that 'star p of i' /mmhmm/ equals, uh, the title, and then you just do i++, so then it’ll {{move to the next one}} ![makes looping gesture with left hand][1] /OK/",
+                    accompanyingMedia: ""
+                },
+
+                {
+                    timestamp: "34:00",
+                    speakerName: "Rebecca",
+                    speech: "[34:00] Rebecca: and you just keep {{saving each of the pointers}} ![left hand makes horizontal chops in the air, like rungs down a ladder][2]",
+                    accompanyingMedia: ""
+                }
+            ],
+
+            episode = {
+                title: "Rebecca's gestural pseudo-coding",
+                turns: turns
+            },
+
+            transcript = {
+                episodes: [episode]
+            };
+
+        return (transcript);
+    }
 };
 
 // boilerplate for exporting Node module
@@ -251,7 +252,7 @@ var transdown = {
     } else {
         // Browser globals (root is window)
         root.returnExports = factory();
-  }
+    }
 }(this, function () {
 
     // Just return a value to define the module export.
