@@ -34,9 +34,9 @@ var transdown = {
     
     parseBlock : function (block, index) {
         "use strict";
-        var speechWithTimestampAndSpeaker = /\s*\[(\d\d(?::\d\d)+(?:[;.]\d\d){0,1})\]\s+([^:]+):\s+(.*)/,
+        var speechWithTimestampAndSpeaker = /\s*\[([\d:;.,]+)\]\s+([^:]+):\s+(.*)/,
             speechWithSpeaker = /^\s*([^:]*):\s+(.*)/,
-            speechWithTimestamp = /\s*\[(\d\d(?::\d\d)+(?:[;.]\d\d){0,1})\]\s+(.*)/,
+            speechWithTimestamp = /\s*\[([\d:;.,]+)\]\s+(.*)/,
             episodeTitlePattern = /^#{1,6}\s+([^\s].*)$/,
             referenceLink = /^\[([^\]])*\]:\s(.*)/,
             episode,
