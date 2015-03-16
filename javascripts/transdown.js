@@ -145,30 +145,6 @@ var transdown = {
         
         blocks.map(transdown.parseBlock, transcript);
         return (transcript);
-        /*
-        
-        To parseBlocks:
-           + separate the text into blocks
-           + Create a new transcript object
-           + process blocks
-                
-        To process blocks:
-           + process the first block
-           + process the rest of the blocks
-           
-        To process the first block:
-           + if it's an episode title,
-              + create a new episode with that as the title and push it onto the array
-           + else,
-              + create a new episode
-              
-           Implemented as
-           
-           episode.title = titlepattern.exec(block) || ""
-        
-        See also: https://gist.github.com/briandk/e561fc59e81eaebd2adc          
-        
-        */
     },
     
     parseReferencesList : function (block, referencePattern) {
