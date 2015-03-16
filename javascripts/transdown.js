@@ -10,8 +10,6 @@ var transdown = {
                     transdown.processLinks,
                     element
                 );
-                element.columns =  transdown.getColumnNames(element);
-                element.numberOfColumns = element.columns.length;
             },
             transcript
         );
@@ -23,7 +21,6 @@ var transdown = {
         "use strict";
         var episode = {
                 title: "",
-                columns: [],
                 turns: []
             };
         if (episodeTitlePattern.test(block) === true) {
@@ -166,30 +163,6 @@ var transdown = {
     },
     
     referencesDictionary : {},
-    
-    getColumnNames : function (episode) {
-        var columns = ["Speech"],
-            speechPosition = columns.indexOf("Speech");
-        
-        if (episode.hasTimestamps === true) {
-            columns.unshift("Time");
-        }
-        if (episode.hasSpeakerNames === true) {
-            speechPosition = columns.indexOf("speech");
-            columns.splice(speechPosition, 0, "Speaker");
-        }
-        if (episode.hasAccompanyingMedia === true) {
-            columns.push("Media");
-        }
-        return (
-            [
-                "Time",
-                "Speaker",
-                "Speech",
-                "Media"
-            ]
-        );
-    },
     
     processLinks : function (turn) {
         var referenceLinkPattern = /!\[([^\]]*)\]\[([^\]])*\]/g,
