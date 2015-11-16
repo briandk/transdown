@@ -1,7 +1,7 @@
 // load modules
 var transdown = require('./transdown.js');
 var readline = require('readline');
-var Handlebars = require('handlebars');
+var Handlebars = require('../bower_components/handlebars/handlebars.js');
 require('./template-node.js');
 
 

@@ -1,4 +1,4 @@
-var Handlebars = require("../bower_components/handlebars/handlebars.js");  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+var Handlebars = require("/Users/briandanielak/dev/transdown/bower_components/handlebars/");  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
 templates['transcriptTemplate'] = template({"1":function(container,depth0,helpers,partials,data) {
     var stack1, helper, options, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", buffer = 
   "  <table class=\"table\n                table-hover\">\n    <thead>\n      <tr>\n        <th class=\"episode-title\" colspan=\"4\">\n            <h4>"
@@ -41,4 +41,3 @@ templates['transcriptTemplate'] = template({"1":function(container,depth0,helper
   return ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.episodes : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\n";
 },"useData":true});
-
