@@ -2,13 +2,13 @@
 
 [Transdown][1] is a lightweight syntax for writing and presenting transcripts of qualitative research data.
 
-Right now, Transdown also lets you [live preview and export your transcript][7] as you work on it in [Inqscribe][4]. 
+Right now, Transdown also lets you [live preview and export your transcript][7] as you work on it in [Inqscribe][4].
 
 # What does it look like in action?
 
 Transdown lets you write raw transcript like this:
 
-    ### Rebecca's gestural pseudo-coding    
+    ### Rebecca's Gestural Pseudo-Coding
 
     [00:33:33.25] Rebecca: and then my thinking at least, is you
     should be able to, um, say that "star p of i" /mmhmm/
@@ -20,10 +20,14 @@ Transdown lets you write raw transcript like this:
     the pointers}} !{left hand makes horizontal chops in the
     air, like rungs down a ladder}[2]
 
-    [1]: images/rebecca1.jpg 
+    [1]: images/rebecca1.jpg
     [2]: images/rebecca2.png
 
 and have it automatically rendered as a beautiful table like this:
+
+---
+
+## Rebecca's Gestural Pseudo-Coding
 
 <table class="table table-striped transdown-output">
 <thead>
@@ -57,6 +61,8 @@ and have it automatically rendered as a beautiful table like this:
 </tbody>
 </table>
 
+---
+
 # How can I install Transdown on my system?
 
 See the [installation instructions][14] on Transdown.org
@@ -79,4 +85,3 @@ Visit [Transdown.org][1]
 [12]: http://git-scm.com/
 [13]: https://github.com/briandk/transdown
 [14]: http://transdown.org/install.html
-
