@@ -1,6 +1,6 @@
 # What is Transdown?
 
-[Transdown][1] is a lightweight syntax for writing and presenting transcripts of qualitative research data.
+[Transdown][1] is a lightweight syntax for writing and presenting transcripts of qualitative research data. It is directly inspired by [Markdown](https://daringfireball.net/projects/markdown/) and [Fountain](https://fountain.io).
 
 Right now, Transdown also lets you [live preview and export your transcript][7] as you work on it in [Inqscribe][4].
 
@@ -62,6 +62,10 @@ and have it automatically rendered as a beautiful table like this:
 </table>
 
 ---
+
+# Where Can I Try It Out?
+
+You can try out Transdown right in your browser. Just head on over to the [Transcriptulator](http://transdown.org/try-it.html)!
 
 # How can I install Transdown on my system?
 
